@@ -1,0 +1,41 @@
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    padding: 10px;
+}
+
+button {
+    font-size: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+    border-radius: 5px;
+    font-family: inherit;
+    background-color: white;
+    color: gray;
+
+}
+
+.btn-back {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.message-error {
+    border-style: solid;
+    border-color: orange;
+    border-width: 3px;
+    color: red;
+    font-size: 50px;
+}
+
+.list-btn {
+    color: blueviolet;
+    cursor: pointer;
+}
