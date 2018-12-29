@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import constants from '../constants'
 const { API_URL } = constants
-
 class Movie extends React.Component {
     constructor(props) {
         super(props)
@@ -16,11 +15,8 @@ class Movie extends React.Component {
         this.setState({ loadedFailed: true })
     }
     renderVideo() {
-        const { location } = this.props;
-        const { pathname } = location;
-        //TODO: workaround for now
-        const partial = pathname.slice(pathname.indexOf('movie/') + 'movie/'.length)
-
+        const partial = getPartialUrl(this.props);
+        
         if (this.state.loadedFailed) {
             return <div className='message-error'>Video Failed to load</div>
         } else {
@@ -36,12 +32,7 @@ class Movie extends React.Component {
         }
     }
     render() {
-        const { location } = this.props;
-        const { pathname } = location;
-        //TODO: another bad workaround, CHANGE HERE
-        // or add test to future break
-        const partial = pathname.slice(pathname.indexOf('movie/') + 'movie/'.length)
-
+        const partial = getPartialUrl(this.props);
         let backRouter = '/movies';
         if(partial.indexOf('courses/') !== -1) {
             backRouter = '/courses';
@@ -53,6 +44,12 @@ class Movie extends React.Component {
             </div>
         </div>
     }
+}
+
+function getPartialUrl({location}) {
+    const { pathname } = location;
+    //TODO: another bad workaround, CHANGE HERE
+    return pathname.slice(pathname.indexOf('movie/') + 'movie/'.length)
 }
 
 export default Movie

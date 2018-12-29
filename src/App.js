@@ -15,10 +15,6 @@ class App extends Component {
             exact path={`/`}
             component={Home}>
           </Route>
-          {/* <Route
-            path={`/courses`}
-            component={CourseList}>
-          </Route> */}
           <Route
             path={`/movies`}
             component={ListMovie}>
