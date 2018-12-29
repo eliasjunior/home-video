@@ -31,15 +31,25 @@ class Movie extends React.Component {
                 width="620"
                 autoPlay={true}
                 height="400">
-                <source src={API_URL + partial} type="video/mp4"></source>
+                <source src={API_URL + '/' + partial} type="video/mp4"></source>
             </video>
         }
     }
     render() {
+        const { location } = this.props;
+        const { pathname } = location;
+        //TODO: another bad workaround, CHANGE HERE
+        // or add test to future break
+        const partial = pathname.slice(pathname.indexOf('movie/') + 'movie/'.length)
+
+        let backRouter = '/movies';
+        if(partial.indexOf('courses/') !== -1) {
+            backRouter = '/courses';
+        }
         return <div>
             {this.renderVideo()}
-            <div className='btn-back'>
-                <button><Link to='/movies'>Back</Link> </button>
+            <div>
+                <Link className='link-base btn-back' to={backRouter}>Back</Link> 
             </div>
         </div>
     }

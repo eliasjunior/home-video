@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import React from 'react';
 
 function Home() {
-    return <div>
+    return <div className="home-content">
         <div>
-            <Link to={'/movies'}>Movies</Link>
+            <Link className="link-base link-btn" to={'/movies'}>Movies</Link>
         </div>
         <div>
-            <Link to={'/courses'}>Courses</Link>
+            <Link className="link-base link-btn" to={'/courses'}>Courses</Link>
         </div>
     </div>
 }

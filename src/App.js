@@ -15,12 +15,16 @@ class App extends Component {
             exact path={`/`}
             component={Home}>
           </Route>
-          <Route
+          {/* <Route
             path={`/courses`}
             component={CourseList}>
-          </Route>
+          </Route> */}
           <Route
             path={`/movies`}
+            component={ListMovie}>
+          </Route>
+          <Route
+            path={`/courses`}
             component={ListMovie}>
           </Route>
           <Route

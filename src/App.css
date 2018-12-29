@@ -1,3 +1,37 @@
-.list-btn {
-  color: aqua
+.home-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.home-content div {
+  padding: 10px
+}
+
+.btn-box {
+  padding: 10px;
+}
+
+.link-base {
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  padding: 5px;
+}
+
+.link-btn {
+  color: white;
+  background-color: #D4AF37;
+  font-weight: 700;
+  font-family: fantasy;
+}
+
+.btn-back {
+  padding: 10px;
+  font-family: fantasy;
+  background-color: rgb(212, 84, 55);
 }

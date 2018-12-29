@@ -30,14 +30,17 @@ class ListCourse extends React.Component {
             if(course) {
                 return list.map(file => {
                     return   <li key={file}>
-                    <Link to={`/courses/${course}/${file}`}>{file}</Link>
+                    <Link className="link-base link-btn" 
+                        to={`/movie/courses/${course}/${file}`}>
+                        {file}
+                    </Link>
                 </li>
                 })
             } else {
                 return list
                 .map(movie => <li key={movie}>
                     <button 
-                        className='list-btn' 
+                        className="link-base link-btn"
                         onClick={() => this.loadCourse(movie)}>
                         {movie}
                     </button>
@@ -55,8 +58,8 @@ class ListCourse extends React.Component {
         }
         return <div>
                 {this.renderList()}
-                <div className='btn-back'>
-                    <button><Link to='/'>Back</Link> </button>
+                <div>
+                   <Link className='link-base btn-back' to='/'>Back</Link>
                 </div>
             </div>
     }

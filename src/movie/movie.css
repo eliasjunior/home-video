@@ -1,15 +1,12 @@
 ul {
     list-style-type: none;
 }
-
 a {
     text-decoration: none;
 }
-
 li {
     padding: 10px;
 }
-
 button {
     font-size: 100%;
     border-style: solid;
@@ -19,14 +16,8 @@ button {
     font-family: inherit;
     background-color: white;
     color: gray;
-
+    cursor: pointer;
 }
-
-.btn-back {
-    margin-top: 10px;
-    margin-left: 10px;
-}
-
 .message-error {
     border-style: solid;
     border-color: orange;
@@ -34,7 +25,6 @@ button {
     color: red;
     font-size: 50px;
 }
-
 .list-btn {
     color: blueviolet;
     cursor: pointer;
