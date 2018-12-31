@@ -25,7 +25,7 @@ class ListMovie extends React.Component {
         const { onHandleVideoPath } = this.props;
         //workaround for now baseFolder
         const videoPath = `/videos/${baseFolder}_${selectedFolder}/${movie}`;
-        if (movie.includes('.mp4') !== -1) {
+        if (movie.includes('.mp4')) {
             return <Link
                 className="link-base link-btn"
                 to={`/display/${movie}`}
