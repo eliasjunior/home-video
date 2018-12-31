@@ -5,70 +5,78 @@ import { get } from '../services/Api';
 import Footer from '../footer/Footer';
 class ListMovie extends React.Component {
     state = {
-        list: [],
-        path: null
+        folderOrFiles: [],
+        folders: [],
+        selectedFolder: null,
+        baseFolder: null
     }
     componentDidMount() {
+        const { baseFolder } = this.props;
+        this.setState({baseFolder})
         const options = {
-            id: null,
-            baseResource: getBaseResource(this.props)
+            urlResource: getUrlResource(this.props),
+            baseFolder
         };
 
         getVideos.call(this, options);
     }
-    renderLink(movie) {
-        if (movie.indexOf('.mp4') !== -1) {
+    diplayLink(movie) {
+        const { folders, selectedFolder, baseFolder } = this.state;
+        const { onHandleVideoPath } = this.props;
+        //workaround for now baseFolder
+        const videoPath = `/videos/${baseFolder}_${selectedFolder}/${movie}`;
+        if (movie.includes('.mp4') !== -1) {
             return <Link
                 className="link-base link-btn"
-                to={`/movie/movies${this.state.path}/${movie}`}>
+                to={`/display/${movie}`}
+                onClick={() => onHandleVideoPath(videoPath)}>
                 {movie}
             </Link>
         } else {
             return <button
                 className="link-base link-btn"
-                onClick={() => getVideos.call(this, { 
-                    id: movie, 
-                    baseResource: getBaseResource(this.props) 
+                onClick={() => this.setState({
+                    folderOrFiles: folders[movie],
+                    selectedFolder: movie
                 })}>
                 {movie}
             </button>
         }
     }
-    renderList() {
-        const { list } = this.state;
+    displayList() {
+        const { folderOrFiles } = this.state;
         const getItems = () => {
-            return list
-                .map(movie => <li key={movie}>
-                    {this.renderLink(movie)}
+            return folderOrFiles
+                .map(name => <li key={name}>
+                    {this.diplayLink(name)}
                 </li>)
         }
         return (
             <ul>{getItems()}</ul>
         )
     }
-
     render() {
-        if (this.state.list.length === 0) {
+        if (this.state.folderOrFiles.length === 0) {
             return <div>Loading...</div>
         }
         return <div>
-            {this.renderList()}
+            {this.displayList()}
             <Footer></Footer>
         </div>
     }
 }
-
-function getVideos({ id, baseResource }) {
-    const resourse = id ? `${baseResource}/${id}` : baseResource;
-    get(resourse)
-        .then(res => this.setState({
-            list: res.files,
-            path: res.path
-        }))
+function getVideos({ urlResource }) {
+    get(urlResource)
+        .then(response => {
+            const folderOrFiles = Object.keys(response);
+            this.setState({
+                folders: response,
+                folderOrFiles
+            })
+        })
         .catch(err => console.error(err))
 }
-
-function getBaseResource({ match }) {
+function getUrlResource({ match }) {
     return match.url.slice(1); //remove slash
 }
 

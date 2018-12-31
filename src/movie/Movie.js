@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-import constants from '../constants'
+import React from 'react';
+import constants from '../constants';
+import Footer from '../footer/Footer';
 const { API_URL } = constants
 class Movie extends React.Component {
     constructor(props) {
@@ -8,14 +8,12 @@ class Movie extends React.Component {
         this.state = {
             loadedFailed: false
         }
-        this.renderVideo = this.renderVideo.bind(this);
-        this.onErrorHandle = this.onErrorHandle.bind(this);
     }
-    onErrorHandle() {
+    onErrorHandle = () => {
         this.setState({ loadedFailed: true })
     }
-    renderVideo() {
-        const partial = getPartialUrl(this.props);
+    renderVideo = () => {
+        const { videoPath } = this.props;
         
         if (this.state.loadedFailed) {
             return <div className='message-error'>Video Failed to load</div>
@@ -24,32 +22,20 @@ class Movie extends React.Component {
                 onError={this.onErrorHandle}
                 controls
                 id="videoPlayer"
-                width="620"
+                width="100%"
                 autoPlay={true}
-                height="400">
-                <source src={API_URL + '/' + partial} type="video/mp4"></source>
+                height="auto">
+                <source src={API_URL + videoPath} type="video/mp4"></source>
             </video>
         }
     }
     render() {
-        const partial = getPartialUrl(this.props);
-        let backRouter = '/movies';
-        if(partial.indexOf('courses/') !== -1) {
-            backRouter = '/courses';
-        }
         return <div>
             {this.renderVideo()}
-            <div>
-                <Link className='link-base btn-back' to={backRouter}>Back</Link> 
-            </div>
+            <Footer></Footer>
         </div>
     }
 }
 
-function getPartialUrl({location}) {
-    const { pathname } = location;
-    //TODO: another bad workaround, CHANGE HERE
-    return pathname.slice(pathname.indexOf('movie/') + 'movie/'.length)
-}
 
 export default Movie

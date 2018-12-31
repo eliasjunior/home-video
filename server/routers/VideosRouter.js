@@ -13,36 +13,34 @@ router.get('/movies', (req, response) => {
     };
     getFiles(options);
 })
-// router.get('/courses', (req, response) => {
-//     const baseLocation = AppServerConstatnt.USER_LOCATION +
-//         AppServerConstatnt.COURSE_LOCATION;
-//     const options = {
-//         response,
-//         baseLocation,
-//         videosLocation: ''
-//     };
-//     getFiles(options);
-// })
-//TODO: workaround need add nested route
-router.get('/movies/:id', (request, response) => {
+router.get('/courses', (req, response) => {
     const baseLocation = AppServerConstatnt.USER_LOCATION +
-        AppServerConstatnt.MOVIES_LOCATION;
-
-    const fullPath = `${baseLocation}/${request.params.id}`;
+        AppServerConstatnt.COURSE_LOCATION;
     const options = {
-        request,
         response,
-        fullPath,
-        baseLocation
-    }
-    readOrStream(options);
-});
-router.get('/movies/:folder/:id', (request, response) => {
-    const baseLocation = AppServerConstatnt.USER_LOCATION +
-        AppServerConstatnt.MOVIES_LOCATION;
+        baseLocation,
+        videosLocation: ''
+    };
+    getFiles(options);
+})
+router.get('/videos/:folder/:fileName', (request, response) => {
+    let baseLocation = AppServerConstatnt.USER_LOCATION
+    const { folder, fileName } = request.params;
+    
+    
+    //workaround for now
+    const separateIndex = folder.indexOf('_');
+    const tempFolder = folder.slice(separateIndex + 1);
+    const backwordsIndex = separateIndex - 6;
+    const baseFolder = folder.slice(backwordsIndex, separateIndex)   
 
-    const { folder, id: fileName } = request.params;
-    const fullPath = `${baseLocation}/${folder}/${fileName}`;
+    if(baseFolder === 'movies') {
+        baseLocation =  baseLocation.concat(AppServerConstatnt.MOVIES_LOCATION);
+    } else {
+        baseLocation = baseLocation.concat(AppServerConstatnt.COURSE_LOCATION);
+    }
+    
+    const fullPath = `${baseLocation}/${tempFolder}/${fileName}`;
     const options = {
         request,
         response,
@@ -53,13 +51,12 @@ router.get('/movies/:folder/:id', (request, response) => {
 });
 
 function readOrStream({ request, response, fullPath, baseLocation }) {
-    const { id } = request.params;
-    if (id.indexOf('.mp4') !== -1) {
+    const { fileName } = request.params;
+    const { range } = request.headers;
+
+    if (fileName.indexOf('.mp4') !== -1) {
         let statInfo = Util.getFileDirInfo(fullPath, response);
-
         const { size } = statInfo;
-
-        const range = request.headers.range;
 
         const options = {
             response,
@@ -72,21 +69,24 @@ function readOrStream({ request, response, fullPath, baseLocation }) {
         const options = {
             response,
             baseLocation,
-            videosLocation: `/${id}`
+            videosLocation: `/${fileName}`
         };
         getFiles(options);
     }
 }
 
 function getFiles({ response, baseLocation, videosLocation }) {
-    const names = Util.readFolder(baseLocation + videosLocation);
-    const fileSystem = {
-        path: videosLocation,
-        files: names
-    }
+    const filepath = baseLocation + videosLocation;
+    const folders = Util.readFolder(filepath);
+
+    const createFolderWithFiles = (prev, folderName) => {
+        prev[folderName] = Util.readFolder(`${filepath}/${folderName}`);
+        return prev;
+    };
+    const videos = folders.reduce(createFolderWithFiles, {});
     response
         .status(200)
-        .json(fileSystem)
+        .json(videos)
         .end();
 }
 

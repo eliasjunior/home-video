@@ -1,13 +1,24 @@
 import { Link } from "react-router-dom";
 import React from 'react';
 
-function Home() {
+function Home(props) {
+    const { onHandleBaseFolder } = props;
     return <div className="home-content">
         <div>
-            <Link className="link-base link-btn" to={'/movies'}>Movies</Link>
+            <Link 
+                className="link-base link-btn" 
+                onClick={() => onHandleBaseFolder('movies')}
+                to={'/movies'}>
+                Movies
+            </Link>
         </div>
         <div>
-            <Link className="link-base link-btn" to={'/courses'}>Courses</Link>
+            <Link 
+                className="link-base link-btn" 
+                onClick={() => onHandleBaseFolder('courses')}
+                to={'/courses'}>
+                Courses
+            </Link>
         </div>
     </div>
 }
