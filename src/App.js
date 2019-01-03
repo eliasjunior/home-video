@@ -3,7 +3,7 @@ import './App.css';
 import ListMovie from './movie/ListMovie';
 import Movie from './movie/Movie';
 import Home from './Home';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -35,6 +35,8 @@ class App extends Component {
           "/about" to "/:user", just wrap your <Route>s in a
           <Switch>. It will render the first one that matches.
       */}
+      <BrowserRouter>
+      
         <Switch>
           <Route
             exact path={`/`}
@@ -62,6 +64,7 @@ class App extends Component {
             }}>
           </Route>
         </Switch>
+        </BrowserRouter>
       </div>
     );
   }
