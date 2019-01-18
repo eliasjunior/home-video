@@ -6,7 +6,7 @@ function Home(props) {
     return <div className="home-content">
         <div>
             <Link 
-                className="link-base link-btn" 
+                className="link-base" 
                 onClick={() => onHandleBaseFolder('movies')}
                 to={'/movies'}>
                 Movies
@@ -14,7 +14,7 @@ function Home(props) {
         </div>
         <div>
             <Link 
-                className="link-base link-btn" 
+                className="link-base" 
                 onClick={() => onHandleBaseFolder('courses')}
                 to={'/courses'}>
                 Courses
@@ -24,3 +24,7 @@ function Home(props) {
 }
 
 export default Home;
+
+
+
+

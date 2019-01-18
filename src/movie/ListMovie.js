@@ -3,6 +3,13 @@ import './movie.css'
 import { Link } from "react-router-dom";
 import { get } from '../services/Api';
 import Footer from '../footer/Footer';
+
+const VALID_FORMATS = new Map([
+    ['mp4', 'mp4'], 
+    ['avi','avi'], 
+    ['m4v', 'm4v']
+]);
+
 class ListMovie extends React.Component {
     state = {
         folderOrFiles: [],
@@ -12,7 +19,7 @@ class ListMovie extends React.Component {
     }
     componentDidMount() {
         const { baseFolder } = this.props;
-        this.setState({baseFolder})
+        this.setState({ baseFolder })
         const options = {
             urlResource: getUrlResource(this.props),
             baseFolder
@@ -25,7 +32,8 @@ class ListMovie extends React.Component {
         const { onHandleVideoPath } = this.props;
         //workaround for now baseFolder
         const videoPath = `/videos/${baseFolder}_${selectedFolder}/${movie}`;
-        if (movie.includes('.mp4')) {
+        
+        if (VALID_FORMATS.get(movie.slice(-3))) {
             return <Link
                 className="link-base link-btn"
                 to={`/display/${movie}`}
@@ -56,7 +64,8 @@ class ListMovie extends React.Component {
         )
     }
     render() {
-        if (this.state.folderOrFiles.length === 0) {
+        const { folderOrFiles } = this.state;
+        if (!folderOrFiles || folderOrFiles.length === 0) {
             return <div>Loading...</div>
         }
         return <div>
@@ -65,6 +74,7 @@ class ListMovie extends React.Component {
         </div>
     }
 }
+
 function getVideos({ urlResource }) {
     get(urlResource)
         .then(response => {

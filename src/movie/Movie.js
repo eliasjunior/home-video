@@ -14,7 +14,7 @@ class Movie extends React.Component {
     }
     renderVideo = () => {
         const { videoPath } = this.props;
-        
+
         if (this.state.loadedFailed) {
             return <div className='message-error'>Video Failed to load</div>
         } else {
