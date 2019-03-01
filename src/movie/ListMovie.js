@@ -1,5 +1,5 @@
 import React from 'react'
-import './movie.css'
+import './movie.css';
 import { Link } from "react-router-dom";
 import { get } from '../services/Api';
 import Footer from '../footer/Footer';
@@ -7,7 +7,7 @@ import Footer from '../footer/Footer';
 const VALID_FORMATS = new Map([
     ['mp4', 'mp4'], 
     ['avi','avi'], 
-    ['m4v', 'm4v']
+    ['mkv', 'mkv']
 ]);
 
 class ListMovie extends React.Component {
@@ -27,13 +27,24 @@ class ListMovie extends React.Component {
 
         getVideos.call(this, options);
     }
+    setUpMovie = (movie) => {
+        const { folders } = this.state;
+        console.log('shit',folders[movie])
+        this.setState({
+            folderOrFiles: folders[movie],
+            selectedFolder: movie
+        });
+    }
     diplayLink(movie) {
-        const { folders, selectedFolder, baseFolder } = this.state;
+        const { selectedFolder, baseFolder } = this.state;
         const { onHandleVideoPath } = this.props;
         //workaround for now baseFolder
         const videoPath = `/videos/${baseFolder}_${selectedFolder}/${movie}`;
-        
-        if (VALID_FORMATS.get(movie.slice(-3))) {
+        console.log('-->',movie.slice(-3), videoPath)  
+        const isVideoFile = () => {
+            return VALID_FORMATS.get(movie.slice(-3))
+        }  
+        if (isVideoFile()) {
             return <Link
                 className="link-base link-btn"
                 to={`/display/${movie}`}
@@ -43,10 +54,7 @@ class ListMovie extends React.Component {
         } else {
             return <button
                 className="link-base link-btn"
-                onClick={() => this.setState({
-                    folderOrFiles: folders[movie],
-                    selectedFolder: movie
-                })}>
+                onClick={this.setUpMovie.bind(null, movie)}>
                 {movie}
             </button>
         }
