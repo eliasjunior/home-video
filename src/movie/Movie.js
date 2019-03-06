@@ -1,48 +1,24 @@
 import React from 'react';
-import constants from '../constants';
-import Footer from '../footer/Footer';
-import './movie.css';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { selectMovieAction } from '../reducers/Movie';
 
-const { API_URL } = constants
-class Movie extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            loadedFailed: false
-        }
-    }
-    onErrorHandle = () => {
-        this.setState({ loadedFailed: true })
-    }
-    renderVideo = () => {
-        const { videoPath } = this.props;
-        const sub = videoPath && videoPath.slice(0, videoPath.length - 3) + 'vtt'
-        if (this.state.loadedFailed) {
-            return <div>
-                <div className='message-error'>Video Failed to load</div>
-                <Footer></Footer>
-            </div>
-        } else {
-            return <video className="video-guy" 
-                onError={this.onErrorHandle} preload="metadata"
-                controls
-                id="videoPlayer"
-                autoPlay={true}>
-                <source src={API_URL + videoPath} type="video/mp4"></source>
-                {/* <track src={API_URL + sub} 
-                    label="English" 
-                    kind="subtitles" 
-                    srcLang="en" default>
-                </track> */}
-            </video>
-        }
-    }
-    render() {
-        return <div>
-            {this.renderVideo()}
-        </div>
-    }
+function Movie({name, files, id , setCurrentAction}) {
+  const handleOnClick = () => {
+    setCurrentAction({name, files, id})
+  }
+  return <Link
+    className="link-base link-btn"
+    to={`/display`}
+    onClick={handleOnClick}>
+    {name}
+  </Link>
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentAction: selectMovieAction(dispatch)
+  }
+}
 
-export default Movie
+export default connect(null, mapDispatchToProps)(Movie);

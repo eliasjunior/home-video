@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import ListMovie from './movie/ListMovie';
-import Movie from './movie/Movie';
+import Movies from './movie/Movies';
+import Stream from './movie/Stream';
 import Home from './Home';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
@@ -36,7 +36,6 @@ class App extends Component {
           <Switch>. It will render the first one that matches.
       */}
       <BrowserRouter>
-      
         <Switch>
           <Route
             exact path={`/`}
@@ -47,20 +46,20 @@ class App extends Component {
             }}>
           </Route>
           <Route
-            path={`/display/:id`}
-            render={props => <Movie
+            path={`/display`}
+            render={props => <Stream
               {...props}
               videoPath={videoPath}>
-            </Movie>}>
+            </Stream>}>
           </Route>
           <Route
             // need to be after /display because is dynamic and ambiguos
             path={`/:path`}
             render={props => {
-              return <ListMovie {...props}
+              return <Movies {...props}
                 baseFolder={baseFolder}
                 onHandleVideoPath={this.handleVideoPath}>
-              </ListMovie>
+              </Movies>
             }}>
           </Route>
         </Switch>
