@@ -5,7 +5,6 @@ import './movie.css';
 import { connect } from 'react-redux'; 
 
 const { API_URL, STREAM } = constants;
-
 class Stream extends React.Component {
   constructor(props) {
     super(props)

@@ -9,7 +9,6 @@ export const selectMovieAction = (dispatch) => {
   }
 }
 export default function reducer(state = {}, action) {
-  
   switch(action.type) {
     case SELETED_MOVIE :
       return Object.assign({}, state, {

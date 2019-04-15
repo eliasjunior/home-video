@@ -3,7 +3,9 @@ import './App.css';
 import Movies from './movie/Movies';
 import Stream from './movie/Stream';
 import Home from './Home';
+import Footer from './footer/Footer';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import Header from './Header';
 
 class App extends Component {
   state = {
@@ -35,34 +37,44 @@ class App extends Component {
           "/about" to "/:user", just wrap your <Route>s in a
           <Switch>. It will render the first one that matches.
       */}
-      <BrowserRouter>
-        <Switch>
-          <Route
-            exact path={`/`}
-            render={props => {
-              return <Home {...props}
-                onHandleBaseFolder={this.handleBaseFolder}>
-              </Home>
-            }}>
-          </Route>
-          <Route
-            path={`/display`}
-            render={props => <Stream
-              {...props}
-              videoPath={videoPath}>
-            </Stream>}>
-          </Route>
-          <Route
-            // need to be after /display because is dynamic and ambiguos
-            path={`/:path`}
-            render={props => {
-              return <Movies {...props}
-                baseFolder={baseFolder}
-                onHandleVideoPath={this.handleVideoPath}>
-              </Movies>
-            }}>
-          </Route>
-        </Switch>
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact path={`/`}
+              render={props => {
+                return <Home {...props}
+                  onHandleBaseFolder={this.handleBaseFolder}>
+                </Home>
+              }}>
+            </Route>
+            <Route
+              path={`/display`}
+              render={props => {
+                return <div>
+                  <Header></Header>
+                  <Stream
+                    {...props}
+                    videoPath={videoPath}>
+                  </Stream>
+                  <Footer></Footer>
+                </div>
+              }}>
+            </Route>
+            <Route
+              // need to be after /display because is dynamic and ambiguos
+              path={`/:path`}
+              render={props => {
+                return <div>
+                  <Header></Header>
+                  <Movies {...props}
+                    baseFolder={baseFolder}
+                    onHandleVideoPath={this.handleVideoPath}>
+                  </Movies>
+                  <Footer></Footer>
+                </div>
+              }}>
+            </Route>
+          </Switch>
         </BrowserRouter>
       </div>
     );
