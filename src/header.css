@@ -1,0 +1,11 @@
+.header {
+  border-style: solid;
+  border-width: 0.1rem;
+  border-radius: 0.1rem;
+  border-color: #424b48;
+  color: whitesmoke;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
