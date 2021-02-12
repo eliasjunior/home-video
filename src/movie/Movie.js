@@ -1,9 +1,8 @@
 import React from 'react';
-import constants from '../constants';
+import {API_URL} from '../common/Constants';
 import Footer from '../footer/Footer';
 import './movie.css';
 
-const { API_URL } = constants
 class Movie extends React.Component {
   constructor(props) {
     super(props)
@@ -16,7 +15,6 @@ class Movie extends React.Component {
   }
   renderVideo = () => {
     const { videoPath } = this.props;
-    console.log('EMA CHORANDO', videoPath)
     const getSubFromVideoUrl = () => {
       const removeSrtFromBegin = videoPath.slice(15); //videos/movies_, temporary
       return removeSrtFromBegin.slice(0, removeSrtFromBegin.length - 3) + 'vtt'
@@ -51,8 +49,5 @@ class Movie extends React.Component {
     </div>
   }
 }
-
-
-
 
 export default Movie

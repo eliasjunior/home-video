@@ -1,10 +1,11 @@
-import  constants from '../constants';
-const { API_URL }  = constants
+import  { API_URL } from '../common/Constants';
 
-export function get(resourse) {
-    return fetch(`${API_URL}/${resourse}`)
-            .then(res => res.json())
-            .then(res => res)
-            .catch(err => err)
+export async function get(resourse) {
+    try {
+        const res = await fetch(`${API_URL}/${resourse}`);
+        return await res.json();
+    } catch (err) {
+        return err;
+    }
 }
 

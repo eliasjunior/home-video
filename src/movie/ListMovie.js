@@ -1,43 +1,40 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './movie.css';
 import { Link } from "react-router-dom";
-import { get } from '../services/Api';
 import Footer from '../footer/Footer';
+import {getVideos} from "../services/VideosService"
+import {VALID_FORMATS} from "../common/Constants"
+import Loading from "../common/Loading"
 
-const VALID_FORMATS = new Map([
-    ['mp4', 'mp4'], 
-    ['avi','avi'], 
-    ['mkv', 'mkv']
-]);
+function ListMovie(props){
+    const { baseFolder, match } = props;
+    const [folderOrFiles, setFolderOrFiles] = useState([])
+    const [folders, setFolders] = useState([])
+    const [selectedFolder, setSelectedFolder] = useState("")
+    useEffect(() => {
+        async function fecthData() {
+            const options = {
+                urlResource:  match.url.slice(1), //remove slashgetUrlResource(props),
+            };
+            const response = await getVideos(options);
+           // const folderOrFiles = Object.keys(response);
+            console.log("response **", response)
+            //TODO review here undefined values
+            const folderOrFiles = Object.keys(response);
+            setFolders(response)
+            setFolderOrFiles(folderOrFiles)
+        }
+        fecthData()
+    }, [])
 
-class ListMovie extends React.Component {
-    state = {
-        folderOrFiles: [],
-        folders: [],
-        selectedFolder: null,
-        baseFolder: null
+    const setUpMovie = (movie) => {
+        console.log('folders',folders)
+        console.log("param movie", movie)
+        setFolderOrFiles(folders[movie])
+        setSelectedFolder(movie)
     }
-    componentDidMount() {
-        const { baseFolder } = this.props;
-        this.setState({ baseFolder })
-        const options = {
-            urlResource: getUrlResource(this.props),
-            baseFolder
-        };
-
-        getVideos.call(this, options);
-    }
-    setUpMovie = (movie) => {
-        const { folders } = this.state;
-        console.log('shit',folders[movie])
-        this.setState({
-            folderOrFiles: folders[movie],
-            selectedFolder: movie
-        });
-    }
-    diplayLink(movie) {
-        const { selectedFolder, baseFolder } = this.state;
-        const { onHandleVideoPath } = this.props;
+    const diplayLink = (movie) => {
+        const { onHandleVideoPath } = props;
         //workaround for now baseFolder
         const videoPath = `/videos/${baseFolder}_${selectedFolder}/${movie}`;
         console.log('-->',movie.slice(-3), videoPath)  
@@ -54,48 +51,25 @@ class ListMovie extends React.Component {
         } else {
             return <button
                 className="link-base link-btn"
-                onClick={this.setUpMovie.bind(null, movie)}>
+                onClick={() => setUpMovie( movie)}>
                 {movie}
             </button>
         }
     }
-    displayList() {
-        const { folderOrFiles } = this.state;
-        const getItems = () => {
-            return folderOrFiles
-                .map(name => <li key={name}>
-                    {this.diplayLink(name)}
-                </li>)
-        }
+    const displayList = () => {
         return (
-            <ul>{getItems()}</ul>
+            <ul>
+                {folderOrFiles.map(movieName => <li key={movieName}>{diplayLink(movieName)}</li>)}
+            </ul>
         )
     }
-    render() {
-        const { folderOrFiles } = this.state;
-        if (!folderOrFiles || folderOrFiles.length === 0) {
-            return <div>Loading...</div>
-        }
-        return <div>
-            {this.displayList()}
-            <Footer></Footer>
-        </div>
+    if (!folderOrFiles || folderOrFiles.length === 0) {
+        return <Loading></Loading>
     }
-}
-
-function getVideos({ urlResource }) {
-    get(urlResource)
-        .then(response => {
-            const folderOrFiles = Object.keys(response);
-            this.setState({
-                folders: response,
-                folderOrFiles
-            })
-        })
-        .catch(err => console.error(err))
-}
-function getUrlResource({ match }) {
-    return match.url.slice(1); //remove slash
+    return <div>
+        {displayList()}
+        <Footer></Footer>
+    </div>
 }
 
 export default ListMovie;
