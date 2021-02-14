@@ -1,7 +1,9 @@
-import { get } from '../services/Api';
-
-export function getVideos({ urlResource }) {
+export function getVideosList({ get, urlResource }) {
     return get(urlResource)
-        .then(response => response)
+        .then(response => {
+            return {
+                movieMap: response
+            }
+        })
         .catch(err => console.error(err))
 }

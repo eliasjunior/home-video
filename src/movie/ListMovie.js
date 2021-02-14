@@ -1,75 +1,60 @@
-import React, {useState, useEffect} from 'react'
-import './movie.css';
-import { Link } from "react-router-dom";
-import Footer from '../footer/Footer';
-import {getVideos} from "../services/VideosService"
-import {VALID_FORMATS} from "../common/Constants"
-import Loading from "../common/Loading"
+import React, { useState, useEffect } from "react";
+import "./movie.css";
+import Footer from "../footer/Footer";
+import { getVideos } from "./Presenter";
+import Loading from "../common/Loading";
+import MovieDetail from "./MovieDetail";
 
-function ListMovie(props){
-    const { baseFolder, match } = props;
-    const [folderOrFiles, setFolderOrFiles] = useState([])
-    const [folders, setFolders] = useState([])
-    const [selectedFolder, setSelectedFolder] = useState("")
-    useEffect(() => {
-        async function fecthData() {
-            const options = {
-                urlResource:  match.url.slice(1), //remove slashgetUrlResource(props),
-            };
-            const response = await getVideos(options);
-           // const folderOrFiles = Object.keys(response);
-            console.log("response **", response)
-            //TODO review here undefined values
-            const folderOrFiles = Object.keys(response);
-            setFolders(response)
-            setFolderOrFiles(folderOrFiles)
-        }
-        fecthData()
-    }, [])
+function ListMovie(props) {
+  const { baseFolder, match } = props;
+  const [movies, setMovies] = useState({});
+  const [currentId, setCurrentId] = useState("");
 
-    const setUpMovie = (movie) => {
-        console.log('folders',folders)
-        console.log("param movie", movie)
-        setFolderOrFiles(folders[movie])
-        setSelectedFolder(movie)
+  useEffect(() => {
+    async function fecthData() {
+      const { movieMap } = await getVideos({ urlResource: match.url.slice(1) });
+      console.log("movieMap >>", movieMap);
+      setMovies(movieMap);
     }
-    const diplayLink = (movie) => {
+    fecthData();
+  }, []);
+
+  const setUpMovie = (movieId) => {
+    console.log("current*", movieId);
+    setCurrentId(movieId);
+  };
+
+  const displayContent = () => {
+      if(currentId) {
         const { onHandleVideoPath } = props;
-        //workaround for now baseFolder
-        const videoPath = `/videos/${baseFolder}_${selectedFolder}/${movie}`;
-        console.log('-->',movie.slice(-3), videoPath)  
-        const isVideoFile = () => {
-            return VALID_FORMATS.get(movie.slice(-3))
-        }  
-        if (isVideoFile()) {
-            return <Link
-                className="link-base link-btn"
-                to={`/display/${movie}`}
-                onClick={() => onHandleVideoPath(videoPath)}>
-                {movie}
-            </Link>
-        } else {
-            return <button
-                className="link-base link-btn"
-                onClick={() => setUpMovie( movie)}>
-                {movie}
-            </button>
-        }
-    }
-    const displayList = () => {
-        return (
-            <ul>
-                {folderOrFiles.map(movieName => <li key={movieName}>{diplayLink(movieName)}</li>)}
-            </ul>
-        )
-    }
-    if (!folderOrFiles || folderOrFiles.length === 0) {
-        return <Loading></Loading>
-    }
-    return <div>
-        {displayList()}
-        <Footer></Footer>
+        const movie = movies.byId[currentId];
+        return <MovieDetail movie={movie} 
+                baseFolder={baseFolder} 
+                onHandleVideoPath={onHandleVideoPath}>
+            </MovieDetail>
+      } else {
+        return  <ul>
+            {movies.allIds.map((id) => (
+                <li key={id}>
+                <button 
+                    className="link-base link-btn" 
+                    onClick={() => setUpMovie(id)}
+                    >
+                    {id}
+                </button>
+          </li>
+        ))}
+      </ul>    
+      }
+  }
+  return !movies.allIds ? (
+    <Loading></Loading>
+  ) : (
+    <div>
+      {displayContent()} 
+      <Footer></Footer>
     </div>
+  );
 }
 
 export default ListMovie;
