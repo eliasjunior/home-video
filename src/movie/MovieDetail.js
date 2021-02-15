@@ -12,7 +12,7 @@ export default function MovieDetail({ movie, baseFolder, onHandleVideoPath }) {
       <Link
         className="link-base link-btn"
         to={`/display/${movie.id}`}
-        onClick={() => onHandleVideoPath(videoPath)}
+        onClick={() => onHandleVideoPath(videoPath, movie)}
       >
         Play
       </Link>

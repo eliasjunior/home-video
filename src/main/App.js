@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import './App.css';
 import ListMovie from '../movie/ListMovie';
-import Movie from '../movie/Movie';
+import Player from '../movie/Player';
 import Home from '../home/Home';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 function App(){
   const [videoPath, setVideoPath] = useState("")
   const [baseFolder, setBaseFolder] = useState("")
+  const [movie, setMovie] = useState({})
 
-  const handleVideoPath = (videoPath) => {
+  const handleVideoPath = (videoPath, movieParam) => {
     setVideoPath(videoPath)
+    setMovie(movieParam)
   }
 
   const handleBaseFolder = (baseFolder) => {
@@ -43,10 +45,11 @@ function App(){
         </Route>
         <Route
           path={`/display/:id`}
-          render={props => <Movie
+          render={props => <Player
             {...props}
+            movie={movie}
             videoPath={videoPath}>
-          </Movie>}>
+          </Player>}>
         </Route>
         <Route
           // need to be after /display because is dynamic and ambiguos
