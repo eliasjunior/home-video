@@ -1,40 +1,11 @@
-.home-content {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
 
-/* home item */
-.home-content div {
-  padding: 10px;
-  border-radius: 5px;
-  border-style: solid;
-  border-width: 2px;
-  background-color: #D4AF37;
-  flex-grow: 1;
-  width: 100%;  /* Or whatever */
-  margin: auto;  /* Magic! */
-  text-align: center;
-  line-height: 350px;
-}
-
-.home-content a {
-  font-weight: 800;
-  font-family: fantasy;
-  color: white;
-  display: block; /* to resize */
+.app-content {
+  padding: 5px;
+  height: 100%;
 }
 
 .btn-box {
   padding: 10px;
-}
-
-.link-base {
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 5px;
 }
 
 .link-btn {
@@ -45,6 +16,13 @@
   border-radius: 5px;
   border-style: solid;
   border-width: 2px;
+  cursor: pointer;
+}
+
+.link-base {
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 5px;
 }
 
 .btn-back {

@@ -1,0 +1,22 @@
+.detail__box {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.media-content--detail {
+  color: white;
+  font-weight: 700;
+  font-family: fantasy;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.media-content__box--img-detail {
+  height: 150px;
+  width: 200px;
+}
+
+.detail__play {
+  margin-top: 20px;
+}

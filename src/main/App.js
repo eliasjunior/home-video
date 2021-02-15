@@ -19,7 +19,7 @@ function App(){
     setBaseFolder(baseFolder);
   }
   return (
-    <div>
+    <div className="app-content">
       {/*
         Sometimes you want to have a whitelist of static paths
         like "/about" and "/company" but also allow for dynamic
@@ -33,35 +33,37 @@ function App(){
         "/about" to "/:user", just wrap your <Route>s in a
         <Switch>. It will render the first one that matches.
     */}
-    <BrowserRouter>
-      <Switch>
-        <Route
-          exact path={`/`}
-          render={props => {
-            return <Home {...props}
-              onHandleBaseFolder={handleBaseFolder}>
-            </Home>
-          }}>
-        </Route>
-        <Route
-          path={`/display/:id`}
-          render={props => <Player
-            {...props}
-            movie={movie}
-            videoPath={videoPath}>
-          </Player>}>
-        </Route>
-        <Route
-          // need to be after /display because is dynamic and ambiguos
-          path={`/:path`}
-          render={props => {
-            return <ListMovie {...props}
-              baseFolder={baseFolder}
-              onHandleVideoPath={handleVideoPath}>
-            </ListMovie>
-          }}>
-        </Route>
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path={`/`}
+            render={(props) => {
+              return (
+                <Home {...props} onHandleBaseFolder={handleBaseFolder}></Home>
+              );
+            }}
+          ></Route>
+          <Route
+            path={`/display/:id`}
+            render={(props) => (
+              <Player {...props} movie={movie} videoPath={videoPath}></Player>
+            )}
+          ></Route>
+          <Route
+            // need to be after /display because is dynamic and ambiguos
+            path={`/:path`}
+            render={(props) => {
+              return (
+                <ListMovie
+                  {...props}
+                  baseFolder={baseFolder}
+                  onHandleVideoPath={handleVideoPath}
+                ></ListMovie>
+              );
+            }}
+          ></Route>
+        </Switch>
       </BrowserRouter>
     </div>
   );

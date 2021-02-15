@@ -1,20 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import './Footer.css';
-import { Link } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
-function Footer({path = '/'}) {
+function Footer() {
+    const history = useHistory()
     return (
         <div className="footer">
-            <Link 
-                className='link-base btn-back' 
-                to={path}>
+            <button  className='link-base btn-back' 
+                onClick={() => {
+                    history.goBack()
+                }}>
                 Back
-            </Link> 
+            </button>
         </div>
     )
-}
-Footer.propTypes = {
-    path: PropTypes.string,
 }
 export default Footer;

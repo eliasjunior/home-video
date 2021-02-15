@@ -4,6 +4,7 @@ import Footer from "../footer/Footer";
 import { getVideos } from "./Presenter";
 import Loading from "../common/Loading";
 import MovieDetail from "./MovieDetail";
+import { getFallBackImgPath } from "../common/Util";
 
 function ListMovie(props) {
   const { baseFolder, match } = props;
@@ -24,34 +25,47 @@ function ListMovie(props) {
     setCurrentId(movieId);
   };
 
+  const getImgPath = (id) => {
+    const movie = movies.byId[id];
+    return getFallBackImgPath(movie.img);
+  };
+
   const displayContent = () => {
-      if(currentId) {
-        const { onHandleVideoPath } = props;
-        const movie = movies.byId[currentId];
-        return <MovieDetail movie={movie} 
-                baseFolder={baseFolder} 
-                onHandleVideoPath={onHandleVideoPath}>
-            </MovieDetail>
-      } else {
-        return  <ul>
-            {movies.allIds.map((id) => (
-                <li key={id}>
-                <button 
-                    className="link-base link-btn" 
+    if (currentId) {
+      const { onHandleVideoPath } = props;
+      const movie = movies.byId[currentId];
+      return (
+        <MovieDetail
+          movie={movie}
+          baseFolder={baseFolder}
+          onHandleVideoPath={onHandleVideoPath}
+        ></MovieDetail>
+      );
+    } else {
+      return (
+        <div className="media-content">
+          {movies.allIds.map((id) => (
+            <div className="media-content__box " key={id}>
+                <div className="media-content__box--img-box">
+                  <img
+                    className="media-content__box--img"
+                    key={id}
+                    src={getImgPath(id)}
                     onClick={() => setUpMovie(id)}
-                    >
-                    {id}
-                </button>
-          </li>
-        ))}
-      </ul>    
-      }
-  }
+                  ></img>
+                  <div className="media-content__box--text">{id}</div>
+                </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+  };
   return !movies.allIds ? (
     <Loading></Loading>
   ) : (
     <div>
-      {displayContent()} 
+      {displayContent()}
       <Footer></Footer>
     </div>
   );
