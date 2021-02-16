@@ -1,33 +1,6 @@
-
 .app-content {
   padding: 5px;
   height: 100%;
 }
 
-.btn-box {
-  padding: 10px;
-}
-
-.link-btn {
-  color: white;
-  background-color: #D4AF37;
-  font-weight: 700;
-  font-family: fantasy;
-  border-radius: 5px;
-  border-style: solid;
-  border-width: 2px;
-  cursor: pointer;
-}
-
-.link-base {
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 5px;
-}
-
-.btn-back {
-  padding: 10px;
-  font-family: fantasy;
-  background-color: rgb(212, 84, 55);
-}
 

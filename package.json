@@ -13,7 +13,8 @@
     "react-test-renderer": "^16.7.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
+    "dev" : "react-scripts start ",
     "server": "nodemon --exec 'node server/server.js'",
     "build": "react-scripts build",
     "test": "react-scripts test",

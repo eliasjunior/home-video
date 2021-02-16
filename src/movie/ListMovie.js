@@ -14,14 +14,12 @@ function ListMovie(props) {
   useEffect(() => {
     async function fecthData() {
       const { movieMap } = await getVideos({ urlResource: match.url.slice(1) });
-      console.log("movieMap >>", movieMap);
       setMovies(movieMap);
     }
     fecthData();
   }, []);
 
   const setUpMovie = (movieId) => {
-    console.log("current*", movieId);
     setCurrentId(movieId);
   };
 
@@ -45,15 +43,14 @@ function ListMovie(props) {
       return (
         <div className="media-content">
           {movies.allIds.map((id) => (
-            <div className="media-content__box " key={id}>
+            <div className="media-content__box " key={id}  onClick={() => setUpMovie(id)}>
                 <div className="media-content__box--img-box">
                   <img
                     className="media-content__box--img"
                     key={id}
                     src={getImgPath(id)}
-                    onClick={() => setUpMovie(id)}
                   ></img>
-                  <div className="media-content__box--text">{id}</div>
+                  {/* <div className="media-content__box--text">{id}</div> */}
                 </div>
             </div>
           ))}

@@ -1,35 +1,30 @@
-import { Link } from "react-router-dom";
-import React from 'react';
+import { useHistory } from "react-router-dom";
+import React from "react";
 import "./home.css";
 
 function Home(props) {
-    const { onHandleBaseFolder } = props;
-    return (
-      <div className="home-content">
-        <div className="home-content__home-box home-content__home-box--first">
-          <Link
-            className="link-base"
-            onClick={() => onHandleBaseFolder("movies")}
-            to={"/movies"}
-          >
-            Movies
-          </Link>
-        </div>
-        <div className="home-content__home-box home-content__home-box--second">
-          <Link
-            className="link-base"
-            onClick={() => onHandleBaseFolder("courses")}
-            to={"/courses"}
-          >
-            Courses
-          </Link>
-        </div>
+  const history = useHistory();
+  const { onHandleBaseFolder } = props;
+  const goToPage = (path) => {
+    onHandleBaseFolder(path);
+    history.push(path);
+  };
+  return (
+    <div className="home-content">
+      <div
+        className="home-content__home-box home-content__home-box--first link-btn"
+        onClick={() => goToPage("movies")}
+      >
+        Movies
       </div>
-    );
+      <div
+        className="home-content__home-box home-content__home-box--second link-btn"
+        onClick={() => goToPage("courses")}
+      >
+        Courses
+      </div>
+    </div>
+  );
 }
 
 export default Home;
-
-
-
-

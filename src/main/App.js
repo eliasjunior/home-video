@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import "../common/common.css";
 import ListMovie from '../movie/ListMovie';
 import Player from '../movie/Player';
 import Home from '../home/Home';
