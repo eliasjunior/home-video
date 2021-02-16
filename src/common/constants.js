@@ -11,7 +11,7 @@ export function getServerUrl() {
   if (NODE_ENV === "development") {
     return `${REACT_APP_SERVER_DEV_PROTOCOL}://${REACT_APP_SERVER_DEV_HOST}:${REACT_APP_SERVER_DEV_PORT}`;
   } else {
-    return "http://192.168.0.234:9000";
+    return "http://192.168.0.234:8080";
   }
 }
 export const VALID_FORMATS = new Map([
