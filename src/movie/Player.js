@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { API_URL } from "../common/Constants";
+import { API_URL } from "../common/constants";
 import Footer from "../footer/Footer";
 import "./movie.css";
 
