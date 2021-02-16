@@ -43,15 +43,19 @@ function ListMovie(props) {
       return (
         <div className="media-content">
           {movies.allIds.map((id) => (
-            <div className="media-content__box " key={id}  onClick={() => setUpMovie(id)}>
-                <div className="media-content__box--img-box">
-                  <img
-                    className="media-content__box--img"
-                    key={id}
-                    src={getImgPath(id)}
-                  ></img>
-                  {/* <div className="media-content__box--text">{id}</div> */}
-                </div>
+            <div
+              className="media-content__box "
+              key={id}
+              onClick={() => setUpMovie(id)}
+            >
+              <div className="media-content__box--img-box">
+                <img
+                  className="media-content__box--img"
+                  key={id}
+                  src={getImgPath(id)}
+                ></img>
+                <div className="media-content__box--text">{id}</div>
+              </div>
             </div>
           ))}
         </div>

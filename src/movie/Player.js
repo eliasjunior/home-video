@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getServerUrl } from "../common/constants";
+import { getServerUrl } from "../common/Util";
 import Footer from "../footer/Footer";
 import "./movie.css";
 

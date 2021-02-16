@@ -26,8 +26,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-weight: 700;
   font-family: fantasy;
+  font-size: xx-small;
   cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;

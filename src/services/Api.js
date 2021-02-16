@@ -1,4 +1,4 @@
-import { getServerUrl } from "../common/constants";
+import { getServerUrl } from "../common/Util";
 
 export async function get(resourse) {
     try {
