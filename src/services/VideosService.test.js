@@ -9,6 +9,6 @@ describe("VideosService", () => {
     it("should return correct when response is []", async () => {
         const get = () => Promise.resolve([])
         const response = await getVideosList({get, urlResource: ""})
-        expect(response).toEqual({movies: []});
+        expect(response).toEqual({ movieMap: [] });
     })
 })
