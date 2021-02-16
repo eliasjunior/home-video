@@ -1,4 +1,4 @@
-import  { API_URL } from '../common/Constants';
+import { API_URL } from "../common/constants";
 
 export async function get(resourse) {
     try {
