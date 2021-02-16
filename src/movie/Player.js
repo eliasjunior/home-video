@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { API_URL } from "../common/constants";
+import { getServerUrl } from "../common/constants";
 import Footer from "../footer/Footer";
 import "./movie.css";
 
@@ -10,8 +10,8 @@ function Player(props) {
     setLoadedFailed(!loadedFailed);
   };
   const renderVideo = () => {
-    const subPath = API_URL + "/captions/" + movie.id + "/" + movie.sub;
-    const videoPath = API_URL + "/videos/" + movie.id + "/" + movie.name;
+    const subPath = getServerUrl() + "/captions/" + movie.id + "/" + movie.sub;
+    const videoPath = getServerUrl() + "/videos/" + movie.id + "/" + movie.name;
 
     if (loadedFailed) {
       return (
