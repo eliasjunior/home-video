@@ -6,7 +6,7 @@ import Loading from "../common/Loading";
 import MovieDetail from "./MovieDetail";
 
 function ListMovie(props) {
-  const { baseFolder, match } = props;
+  const { baseFolder } = props;
   const [movies, setMovies] = useState({});
   const [currentId, setCurrentId] = useState("");
 
@@ -24,11 +24,6 @@ function ListMovie(props) {
 
   const setUpMovie = (movieId) => {
     setCurrentId(movieId);
-  };
-
-  const getImg = (id) => {
-    const movie = movies.byId[id];
-    return getMovieImg(movie);
   };
 
   const displayContent = () => {
@@ -55,7 +50,7 @@ function ListMovie(props) {
                 <img
                   className="media-content__box--img"
                   key={id}
-                  src={getImg(id)}
+                  src={getMovieImg(movies.byId[id])}
                 ></img>
                 <div className="media-content__box--text">{id}</div>
               </div>

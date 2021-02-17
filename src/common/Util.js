@@ -16,6 +16,7 @@ export function getImgFallBackName() {
 }
 
 export function getServerUrl() {
+  return "http://192.168.0.234:8080";
   console.log("env", NODE_ENV);
   if (NODE_ENV === "development") {
     return `${REACT_APP_SERVER_DEV_PROTOCOL}://${REACT_APP_SERVER_DEV_HOST}:${REACT_APP_SERVER_DEV_PORT}`;

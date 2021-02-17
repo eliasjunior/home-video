@@ -14,8 +14,7 @@ export default function MovieDetail({ movie, baseFolder, onHandleVideoPath }) {
         ></img>
         <div className="media-content--detail"> {movie.name} </div>
         <div className="media-content--detail"> {movie.sub} </div>
-      </div>
-      <div className="detail__play">
+        <div className="detail__play">
         <Link
           className="link-base link-btn"
           to={`/display/${movie.id}`}
@@ -23,6 +22,7 @@ export default function MovieDetail({ movie, baseFolder, onHandleVideoPath }) {
         >
           Play
         </Link>
+      </div>
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import { getImgFallBackName, getServerUrl } from "../common/Util";
 import { get } from "../services/Api";
 
-import { getVideosList, getMovieFile } from "../services/VideosService";
+import { getVideosList } from "../services/VideosService";
 
 export async function getVideos() {
   const api = {
