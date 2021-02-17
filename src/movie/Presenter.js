@@ -17,7 +17,6 @@ export function getMovieImg({ img, id }) {
     urlResource: "images",
   };
   //this would change in a proper img server
-  console.log(img, getImgFallBackName(), img.includes(getImgFallBackName()));
   if (img.includes(getImgFallBackName())) {
     return getServerUrl() + "/static/" + img;
   } else {
