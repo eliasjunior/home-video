@@ -32,7 +32,7 @@ function Player(props) {
           autoPlay={true}
         >
           <source src={videoPath} type="video/mp4"></source>
-          <track
+          {/* <track
             src={subPath}
             label="English"
             kind="subtitles"
@@ -44,7 +44,7 @@ function Player(props) {
             label="Portuguese"
             kind="subtitles"
             srcLang="pt"
-          ></track>
+          ></track> */}
         </video>
       );
     }
