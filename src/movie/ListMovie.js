@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./movie.css";
 import Footer from "../footer/Footer";
-import { getVideos } from "./Presenter";
+import { getVideos, getMovieImg } from "./Presenter";
 import Loading from "../common/Loading";
 import MovieDetail from "./MovieDetail";
-import { getFallBackImgPath } from "../common/Util";
 
 function ListMovie(props) {
   const { baseFolder, match } = props;
@@ -13,8 +12,12 @@ function ListMovie(props) {
 
   useEffect(() => {
     async function fecthData() {
-      const { movieMap } = await getVideos({ urlResource: match.url.slice(1) });
-      setMovies(movieMap);
+      try {
+        const { movieMap } = await getVideos();
+        setMovies(movieMap);
+      } catch (err) {
+        console.error(err);
+      }
     }
     fecthData();
   }, []);
@@ -23,9 +26,9 @@ function ListMovie(props) {
     setCurrentId(movieId);
   };
 
-  const getImgPath = (id) => {
+  const getImg = (id) => {
     const movie = movies.byId[id];
-    return getFallBackImgPath(movie.img);
+    return getMovieImg(movie);
   };
 
   const displayContent = () => {
@@ -52,7 +55,7 @@ function ListMovie(props) {
                 <img
                   className="media-content__box--img"
                   key={id}
-                  src={getImgPath(id)}
+                  src={getImg(id)}
                 ></img>
                 <div className="media-content__box--text">{id}</div>
               </div>

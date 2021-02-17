@@ -6,15 +6,14 @@ const {
   NODE_ENV,
 } = process.env;
 
-
 export function isVideoFile(movieName){
     return VALID_FORMATS.get(movieName.slice(-3))
 }  
 
-export function getFallBackImgPath (imgName) {
-    //this would change in a proper img server
-    return getServerUrl() + "/public/" + imgName;
-};
+export function getImgFallBackName() {
+  //TODO get from the API
+  return "movie_fallback";
+}
 
 export function getServerUrl() {
   console.log("env", NODE_ENV);

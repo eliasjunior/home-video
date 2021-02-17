@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getFallBackImgPath } from "../common/Util";
+import { getMovieImg } from "./Presenter";
 import "./movieDetail.css";
 
 export default function MovieDetail({ movie, baseFolder, onHandleVideoPath }) {
@@ -10,9 +10,10 @@ export default function MovieDetail({ movie, baseFolder, onHandleVideoPath }) {
       <div className="detail__box">
         <img
           className="media-content__box--img-detail"
-          src={getFallBackImgPath(movie.img)}
+          src={getMovieImg(movie)}
         ></img>
         <div className="media-content--detail"> {movie.name} </div>
+        <div className="media-content--detail"> {movie.sub} </div>
       </div>
       <div className="detail__play">
         <Link
