@@ -11,16 +11,11 @@ export async function getVideos() {
   return getVideosList({ api });
 }
 
-export function getMovieImg({ img, id }) {
-  const api = {
-    get,
-    urlResource: "images",
-  };
+export function getMovieImg({ name, id }) {
   //this would change in a proper img server
-  if (img.includes(getImgFallBackName())) {
-    return getServerUrl() + "/static/" + img;
+  if (name.includes(getImgFallBackName())) {
+    return getServerUrl() + "/static/" + name;
   } else {
-    return `${getServerUrl()}/images/${id}/${img} `;
-    //  return getMovieFile({ api, movie: { id, img } });
+    return `${getServerUrl()}/images/${id}/${name} `;
   }
 }
