@@ -22,3 +22,12 @@ export function getServerUrl() {
     return "http://192.168.0.234:8080";
   }
 }
+
+export function requiredParameter(name, isThrow = true) {
+  //TODO add log monitoring
+  if (isThrow) {
+    throw new Error(`${name} is required`);
+  } else {
+    console.error(`${name} is required *`);
+  }
+}
