@@ -1,8 +1,4 @@
-import {
-  getImgFallBackName,
-  getServerUrl,
-  requiredParameter,
-} from "../common/Util";
+import { getServerUrl, requiredParameter } from "../common/Util";
 import { get } from "../services/Api";
 
 import { getVideosList } from "../services/VideosService";
@@ -19,10 +15,5 @@ export function getMovieImg({
   name = requiredParameter("name"),
   id = requiredParameter("name"),
 } = {}) {
-  //this would change in a proper img server
-  if (name.includes(getImgFallBackName())) {
-    return getServerUrl() + "/static/" + name;
-  } else {
-    return `${getServerUrl()}/images/${id}/${name} `;
-  }
+  return `${getServerUrl()}/images/${id}/${name} `;
 }

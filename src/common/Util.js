@@ -10,11 +10,6 @@ export function isVideoFile(movieName){
     return VALID_FORMATS.get(movieName.slice(-3))
 }  
 
-export function getImgFallBackName() {
-  //TODO get from the API
-  return "movie_fallback";
-}
-
 export function getServerUrl() {
   if (NODE_ENV === "development") {
     return `${REACT_APP_SERVER_DEV_PROTOCOL}://${REACT_APP_SERVER_DEV_HOST}:${REACT_APP_SERVER_DEV_PORT}`;
