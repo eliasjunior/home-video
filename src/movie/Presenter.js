@@ -6,7 +6,6 @@ import { getVideosList } from "../services/VideosService";
 export async function getVideos() {
   const api = {
     get,
-    urlResource: "movies",
   };
   return getVideosList({ api });
 }

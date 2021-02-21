@@ -1,18 +1,3 @@
-.loading-content {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  flex-direction: row;
-}
-.loading-content__label {
-  color: rgba(244, 247, 247, 0.996);
-  width: 200px;
-  height: 200px;
-  border-style: solid;
-  border-radius: 5px;
-  border-color: blue;
-}
-
 .btn-box {
   padding: 10px;
 }

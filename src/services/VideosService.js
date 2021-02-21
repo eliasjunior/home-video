@@ -1,7 +1,7 @@
 export async function getVideosList({ api }) {
-  const { get, urlResource } = api;
+  const { get } = api;
   try {
-    const response = await get(urlResource);
+    const response = await get("videos");
     return { movieMap: response };
   } catch (err) {
     console.error(err);

@@ -9,6 +9,7 @@ export default function MovieDetail({ movie, baseFolder, onHandleVideoPath }) {
     <>
       <div className="detail__box">
         <img
+          alt="Movie poster"
           className="media-content__box--img-detail"
           src={getMovieImg(movie)}
         ></img>

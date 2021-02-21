@@ -50,6 +50,7 @@ function ListMovie(props) {
                 <img
                   className="media-content__box--img"
                   key={id}
+                  alt="Movie poster"
                   src={getMovieImg(movies.byId[id])}
                 ></img>
                 <div className="media-content__box--text">{id}</div>

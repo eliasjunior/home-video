@@ -21,7 +21,7 @@ function Home(props) {
         className="home-content__home-box home-content__home-box--second link-btn"
         onClick={() => goToPage("courses")}
       >
-        Courses
+        Photos(not ready)
       </div>
     </div>
   );
