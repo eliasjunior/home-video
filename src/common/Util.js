@@ -11,7 +11,6 @@ export function isVideoFile(movieName){
 }  
 
 export function getServerUrl() {
-  return "http://192.168.0.234:8080";
   if (NODE_ENV === "development") {
     return `${REACT_APP_SERVER_DEV_PROTOCOL}://${REACT_APP_SERVER_DEV_HOST}:${REACT_APP_SERVER_DEV_PORT}`;
   } else {
