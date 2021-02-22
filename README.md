@@ -1,10 +1,20 @@
-# DadFlix
+# Home-video-ui
 
 ## What is it ?
 
-- It's react basic app to list and play videos reading from a streaming API [app](https://github.com/eliasjunior/home-video) 
+- It's react basic app to list and play videos reading from a streaming API [app](https://github.com/eliasjunior/home-video-api) you also have to set up and install the back-end
 
+## How to use it
 
+Install the depencies
+`npm install`
+
+Setting up 
+
+check `config.js`, if you have a remote server at home just like a raspberry pi just add the IP there
+
+Run the app
+`npm start`
 
 ## Architectural decisions
 
@@ -21,19 +31,13 @@ So this is a front-end app, you know that you will have a footer and header comp
 
 The File structure should speak for it self, 
 
-## How to use it
 
-Install the depencies
-`npm install`
-
-Run the app
-`npm start`
 
 ### TODO
  Add readme instructuns to setup and archtecture
-- media to List movie
-- media query for Moviedetail
-- work on loading
+
+- check if the server is up
+- work on Error message component
 - search movie
 - footer btns
 - subtitle fix

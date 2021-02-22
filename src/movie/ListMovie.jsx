@@ -4,12 +4,13 @@ import Footer from "../footer/Footer";
 import { getVideos, getMovieImg } from "./Presenter";
 import Loading from "../common/Loading";
 import MovieDetail from "./MovieDetail";
+import Message from "../common/Message";
 
 function ListMovie(props) {
-  const { baseFolder } = props;
+  const { baseFolder, serverStatus } = props;
   const [movies, setMovies] = useState({});
   const [currentId, setCurrentId] = useState("");
-
+  
   useEffect(() => {
     async function fecthData() {
       try {
@@ -61,14 +62,18 @@ function ListMovie(props) {
       );
     }
   };
-  return !movies.allIds ? (
-    <Loading></Loading>
-  ) : (
-    <div>
-      {displayContent()}
-      <Footer></Footer>
-    </div>
-  );
+  if  (serverStatus === "offline" ) {
+    return <Message text="server is unreachable"></Message>
+  } else {
+    return !movies.allIds ? (
+      <Loading></Loading>
+    ) : (
+      <div>
+        {displayContent()}
+        <Footer></Footer>
+      </div>
+    );
+  }
 }
 
 export default ListMovie;

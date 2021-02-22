@@ -1,7 +1,8 @@
-import { getServerUrl, requiredParameter } from "../common/Util";
+import { requiredParameter } from "../common/Util";
 import { get } from "../services/Api";
-
 import { getVideosList } from "../services/VideosService";
+import config from "../config";
+const { SERVER_URL } = config();
 
 export async function getVideos() {
   const api = {
@@ -14,5 +15,5 @@ export function getMovieImg({
   name = requiredParameter("name"),
   id = requiredParameter("name"),
 } = {}) {
-  return `${getServerUrl()}/images/${id}/${name} `;
+  return `${SERVER_URL}/images/${id}/${name} `;
 }

@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import './App.css';
 import "../common/common.css";
 import ListMovie from '../movie/ListMovie';
 import Player from '../movie/Player';
 import Home from '../home/Home';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { subscribeServerStatus } from "../common/Util";
 
 function App(){
-  const [videoPath, setVideoPath] = useState("")
-  const [baseFolder, setBaseFolder] = useState("")
-  const [movie, setMovie] = useState({})
+  const [videoPath, setVideoPath] = useState("");
+  const [baseFolder, setBaseFolder] = useState("");
+  const [movie, setMovie] = useState({});
+  const [serverStatus, setServerStatus] = useState("unknow");
 
   const handleVideoPath = (videoPath, movieParam) => {
-    setVideoPath(videoPath)
-    setMovie(movieParam)
-  }
-
+    setVideoPath(videoPath);
+    setMovie(movieParam);
+  };
   const handleBaseFolder = (baseFolder) => {
     setBaseFolder(baseFolder);
-  }
+  };
+  const handleServerStatus = (value) => {
+    setServerStatus(value);
+  };
+  subscribeServerStatus(handleServerStatus);
   return (
     <div className="app-content">
       {/*
@@ -58,6 +63,7 @@ function App(){
               return (
                 <ListMovie
                   {...props}
+                  serverStatus={serverStatus}
                   baseFolder={baseFolder}
                   onHandleVideoPath={handleVideoPath}
                 ></ListMovie>

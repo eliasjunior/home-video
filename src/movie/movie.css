@@ -60,13 +60,7 @@ button {
   color: gray;
   cursor: pointer;
 }
-.message-error {
-  border-style: solid;
-  border-color: orange;
-  border-width: 3px;
-  color: red;
-  font-size: 50px;
-}
+
 .list-btn {
   color: blueviolet;
   cursor: pointer;

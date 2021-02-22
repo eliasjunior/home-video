@@ -1,0 +1,12 @@
+.msg-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.msg-box__label {
+    font-size: 20px;
+}
+.msg-box__label--error {
+  color: #f04806;
+}

@@ -1,22 +1,10 @@
 import { VALID_FORMATS } from "./constants";
-const {
-  REACT_APP_SERVER_DEV_PROTOCOL,
-  REACT_APP_SERVER_DEV_HOST,
-  REACT_APP_SERVER_DEV_PORT,
-  NODE_ENV,
-} = process.env;
+import config from "../config";
+const { SERVER_URL } = config();
 
 export function isVideoFile(movieName){
     return VALID_FORMATS.get(movieName.slice(-3))
 }  
-
-export function getServerUrl() {
-  if (NODE_ENV === "development") {
-    return `${REACT_APP_SERVER_DEV_PROTOCOL}://${REACT_APP_SERVER_DEV_HOST}:${REACT_APP_SERVER_DEV_PORT}`;
-  } else {
-    return "http://192.168.0.234:8080";
-  }
-}
 
 export function requiredParameter(name, isThrow = true) {
   //TODO add log monitoring
@@ -25,4 +13,15 @@ export function requiredParameter(name, isThrow = true) {
   } else {
     console.error(`${name} is required *`);
   }
+}
+
+export function subscribeServerStatus(onHandleStatus) {
+  const img = document.body.appendChild(document.createElement("img"));
+  img.onload = function () {
+    onHandleStatus("online");
+  };
+  img.onerror = function () {
+    onHandleStatus("offline");
+  };
+  img.src = `${SERVER_URL}/public/tiny.png`;
 }
