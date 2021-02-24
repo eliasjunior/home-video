@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./app.css";
+import "./App.css";
 import "../common/common.css";
 import ListMovie from "../movie/ListMovie";
 import Player from "../movie/Player";

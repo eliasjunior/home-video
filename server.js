@@ -3,7 +3,6 @@ const path = require("path");
 const app = express();
 
 app.use(express.static("./build"));
-app.use(express.static("./public"));
 
 app.get("/*", (_, res) => {
   _log("*** React local server running **** ");
