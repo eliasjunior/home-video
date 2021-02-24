@@ -1,8 +1,8 @@
-# Home-video-ui
+# Home video ui
 
 ## What is it ?
 
-- It's react basic app to list and play videos reading from a streaming API [app](https://github.com/eliasjunior/home-video-api) you also have to set up and install the back-end
+- It's react basic app to play videos reading from a streaming API [app](https://github.com/eliasjunior/home-video-api) you also have to set up and install the back-end
 
 ## How to use it
 
@@ -35,9 +35,7 @@ The File structure should speak for it self,
 
 ### TODO
  Add readme instructuns to setup and archtecture
-
-- check if the server is up
-- work on Error message component
+- server status is adding imgs
 - search movie
 - footer btns
 - subtitle fix

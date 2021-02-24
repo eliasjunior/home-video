@@ -25,7 +25,6 @@
   transform: translate(-50%, -50%);
   color: white;
   font-family: fantasy;
-  font-size: xx-small;
   cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
@@ -36,12 +35,18 @@
     height: 250px;
     width: 200px;
   }
+  .media-content__box--text {
+    font-size: xx-small;
+  }
 }
 
 @media only screen and (max-width: 700px) {
   .media-content__box--img {
     height: 150px;
     width: 100px;
+  }
+  .media-content__box--text {
+    font-size: 5px;
   }
 }
 

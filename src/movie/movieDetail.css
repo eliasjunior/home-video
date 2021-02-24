@@ -14,9 +14,18 @@
 
 .media-content__box--img-detail {
   height: 150px;
-  width: 200px;
+  width: 100px;
 }
 
 .detail__play {
   margin-top: 20px;
 }
+
+@media only screen and (min-width: 700px) {
+  .media-content__box--img-detail {
+    height: 250px;
+    width: 200px;
+  }
+}
+
+   
