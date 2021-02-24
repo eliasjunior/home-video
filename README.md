@@ -1,20 +1,24 @@
-# Home video ui
+# Home Video UI
 
 ## What is it ?
 
-- It's react basic app to play videos reading from a streaming API [app](https://github.com/eliasjunior/home-video-api) you also have to set up and install the back-end
+- It's react basic app to play videos reading from a streaming API [`Home Video API`](https://github.com/eliasjunior/home-video-api) you also have to set up and install the back-end
 
 ## How to use it
 
 Install the depencies
 `npm install`
 
-Setting up 
+## Configuration
 
-check `config.js`, if you have a remote server at home just like a raspberry pi just add the IP there
+### Local test
 
-Run the app
+- check the file `config.js`, if you have a remote server at home just like a raspberry pi just add the IP there
+
+- Run the app
 `npm start`
+
+See `package.json` to available scripts
 
 ## Architectural decisions
 
@@ -35,7 +39,6 @@ The File structure should speak for it self,
 
 ### TODO
  Add readme instructuns to setup and archtecture
-- server status is adding imgs
 - search movie
 - footer btns
-- subtitle fix
+

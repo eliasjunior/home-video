@@ -1,6 +1,8 @@
 import { useHistory } from "react-router-dom";
 import React from "react";
 import "./home.css";
+import config from "../config";
+const { SERVER_URL } = config();
 
 function Home(props) {
   const history = useHistory();
@@ -10,19 +12,8 @@ function Home(props) {
     history.push(path);
   };
   return (
-    <div className="home-content">
-      <div
-        className="home-content__home-box home-content__home-box--first link-btn"
-        onClick={() => goToPage("movies")}
-      >
-        Movies
-      </div>
-      <div
-        className="home-content__home-box home-content__home-box--second link-btn"
-        onClick={() => goToPage("courses")}
-      >
-        Photos(not ready)
-      </div>
+    <div className="home" onClick={() => goToPage("movies")}>
+      <img src={`${SERVER_URL}/public/movies.png`}></img>
     </div>
   );
 }

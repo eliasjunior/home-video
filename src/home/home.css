@@ -1,38 +1,13 @@
-.home-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-
-.home-content__home-box {
-    background-color: #D4AF37;
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
+.home {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 3px;
+}
+
+.home img {
+    height: 120px;
+    width: 140px;
+    cursor: pointer;
 }    
 
-.home-content__home-box--first {
-    height: 50%;
-    width: 100%;
-}
-
-.home-content__home-box--second {
-    flex-grow: 1;
-    width: 100%;
-}
-  
-
-
-.home-content a {
-    font-weight: 800;
-    font-family: fantasy;
-    color: white;
-    display: block; /* to resize */
-}
   

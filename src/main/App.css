@@ -1,10 +1,17 @@
+.app {
+  display: flex;
+  min-height: 99vh;
+  flex-direction: column;
+}
+
 .app-content {
-  height: 100%;
+  flex: 1;
+  background: rgb(63, 94, 251);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(36, 15, 56, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
 }
-
-.component-page {
-  height: 100%;
-}
-
-
-

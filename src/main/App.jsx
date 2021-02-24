@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./app.css";
 import "../common/common.css";
-import ListMovie from '../movie/ListMovie';
-import Player from '../movie/Player';
-import Home from '../home/Home';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import ListMovie from "../movie/ListMovie";
+import Player from "../movie/Player";
+import Home from "../home/Home";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import { subscribeServerStatus } from "../common/Util";
+import Footer from "../footer/Footer";
 
-function App(){
+function App() {
   const [videoPath, setVideoPath] = useState("");
   const [baseFolder, setBaseFolder] = useState("");
   const [movie, setMovie] = useState({});
@@ -23,56 +24,50 @@ function App(){
   const handleServerStatus = (value) => {
     setServerStatus(value);
   };
-  subscribeServerStatus(handleServerStatus);
+
+  useEffect(() => {
+    subscribeServerStatus(handleServerStatus);
+  }, [serverStatus]);
+
   return (
-    <div className="app-content">
-      {/*
-        Sometimes you want to have a whitelist of static paths
-        like "/about" and "/company" but also allow for dynamic
-        patterns like "/:user". The problem is that "/about"
-        is ambiguous and will match both "/about" and "/:user".
-        Most routers have an algorithm to decide for you what
-        it will match since they only allow you to match one
-        "route". React Router lets you match in multiple places
-        on purpose (sidebars, breadcrumbs, etc). So, when you
-        want to clear up any ambiguous matching, and not match
-        "/about" to "/:user", just wrap your <Route>s in a
-        <Switch>. It will render the first one that matches.
-    */}
-      <BrowserRouter>
-        <Switch>
-          <Route
-            exact
-            path={`/`}
-            render={(props) => {
-              return (
-                <Home {...props} onHandleBaseFolder={handleBaseFolder}></Home>
-              );
-            }}
-          ></Route>
-          <Route
-            path={`/display/:id`}
-            render={(props) => (
-              <Player {...props} movie={movie} videoPath={videoPath}></Player>
-            )}
-          ></Route>
-          <Route
-            // need to be after /display because is dynamic and ambiguos
-            path={`/:path`}
-            render={(props) => {
-              return (
-                <ListMovie
-                  {...props}
-                  serverStatus={serverStatus}
-                  baseFolder={baseFolder}
-                  onHandleVideoPath={handleVideoPath}
-                ></ListMovie>
-              );
-            }}
-          ></Route>
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <div className="app">
+        <div className="app-content">
+          <Switch>
+            <Route
+              exact
+              path={`/`}
+              render={(props) => {
+                return (
+                  <Home {...props} onHandleBaseFolder={handleBaseFolder}></Home>
+                );
+              }}
+            ></Route>
+            <Route
+              path={`/display/:id`}
+              render={(props) => (
+                <Player {...props} movie={movie} videoPath={videoPath}></Player>
+              )}
+            ></Route>
+            <Route
+              // need to be after /display because is dynamic and ambiguos
+              path={`/:path`}
+              render={(props) => {
+                return (
+                  <ListMovie
+                    {...props}
+                    serverStatus={serverStatus}
+                    baseFolder={baseFolder}
+                    onHandleVideoPath={handleVideoPath}
+                  ></ListMovie>
+                );
+              }}
+            ></Route>
+          </Switch>
+        </div>
+        <Footer></Footer>
+      </div>
+    </BrowserRouter>
   );
 }
 export default App;

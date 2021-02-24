@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import config from "../config";
-import Footer from "../footer/Footer";
-import "./movie.css";
+import "./player.css";
 import Message from "../common/Message";
 const { SERVER_URL } = config();
 
 function Player(props) {
   const [loadedFailed, setLoadedFailed] = useState(false);
   const { movie } = props;
-  console.log(movie);
   const onErrorHandle = () => {
     setLoadedFailed(!loadedFailed);
   };
@@ -17,12 +15,7 @@ function Player(props) {
     const videoPath = SERVER_URL + "/videos/" + movie.id + "/" + movie.name;
 
     if (loadedFailed) {
-      return (
-        <>
-          <Message></Message>
-          <Footer></Footer>
-        </>
-      );
+      return <Message></Message>;
     } else {
       return (
         <video
@@ -52,7 +45,7 @@ function Player(props) {
       );
     }
   };
-  return <div className="component-page">{renderVideo()}</div>;
+  return <div className="player">{renderVideo()}</div>;
 }
 
 export default Player;

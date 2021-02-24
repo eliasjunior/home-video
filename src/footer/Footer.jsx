@@ -1,18 +1,20 @@
 import React from 'react'
-import './Footer.css';
-import { useHistory} from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./footer.css";
 
 function Footer() {
-    const history = useHistory()
-    return (
-        <div className="footer">
-            <button  className='link-base btn-back' 
-                onClick={() => {
-                    history.goBack()
-                }}>
-                Back
-            </button>
-        </div>
-    )
+  return (
+    <div className="footer">
+      <Link to="/">
+        <i class="fas fa-home"></i>
+      </Link>
+      <Link to="/movies">
+        <i class="fas fa-film"></i>
+      </Link>
+      <Link to="/settings">
+        <i class="fas fa-user-cog"></i>
+      </Link>
+    </div>
+  );
 }
 export default Footer;

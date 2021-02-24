@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./movie.css";
-import Footer from "../footer/Footer";
 import { getVideos, getMovieImg } from "./Presenter";
 import Loading from "../common/Loading";
 import MovieDetail from "./MovieDetail";
@@ -65,14 +64,7 @@ function ListMovie(props) {
   if  (serverStatus === "offline" ) {
     return <Message text="server is unreachable"></Message>
   } else {
-    return !movies.allIds ? (
-      <Loading></Loading>
-    ) : (
-      <div>
-        {displayContent()}
-        <Footer></Footer>
-      </div>
-    );
+    return !movies.allIds ? <Loading></Loading> : <div>{displayContent()}</div>;
   }
 }
 
