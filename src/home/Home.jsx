@@ -1,12 +1,12 @@
-import { useHistory } from "react-router-dom";
 import React from "react";
+import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./home.css";
 import config from "../config";
 const { SERVER_URL } = config();
 
-function Home(props) {
+function Home({ onHandleBaseFolder }) {
   const history = useHistory();
-  const { onHandleBaseFolder } = props;
   const goToPage = (path) => {
     onHandleBaseFolder(path);
     history.push(path);
@@ -19,3 +19,7 @@ function Home(props) {
 }
 
 export default Home;
+
+Home.propTypes = {
+  onHandleBaseFolder: PropTypes.func,
+};

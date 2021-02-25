@@ -11,9 +11,6 @@ export async function getVideos() {
   return getVideosList({ api });
 }
 
-export function getMovieImg({
-  name = requiredParameter("name"),
-  id = requiredParameter("name"),
-} = {}) {
-  return `${SERVER_URL}/images/${id}/${name} `;
+export function getMovieImg(id = requiredParameter("id")) {
+  return `${SERVER_URL}/images/${id}`;
 }

@@ -9,13 +9,11 @@ import { subscribeServerStatus } from "../common/Util";
 import Footer from "../footer/Footer";
 
 function App() {
-  const [videoPath, setVideoPath] = useState("");
   const [baseFolder, setBaseFolder] = useState("");
   const [movie, setMovie] = useState({});
   const [serverStatus, setServerStatus] = useState("unknow");
 
-  const handleVideoPath = (videoPath, movieParam) => {
-    setVideoPath(videoPath);
+  const handleSelectedMovie = (movieParam) => {
     setMovie(movieParam);
   };
   const handleBaseFolder = (baseFolder) => {
@@ -32,39 +30,39 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <div className="app-content">
-          <Switch>
+        <Switch>
+          <Route
+            exact
+            path={`/`}
+            render={(props) => {
+              return (
+                <Home {...props} onHandleBaseFolder={handleBaseFolder}></Home>
+              );
+            }}
+          ></Route>
+          <Route
+            path={`/display/:id`}
+            render={(props) => <Player {...props} movie={movie}></Player>}
+          ></Route>
             <Route
-              exact
-              path={`/`}
-              render={(props) => {
-                return (
-                  <Home {...props} onHandleBaseFolder={handleBaseFolder}></Home>
-                );
-              }}
-            ></Route>
-            <Route
-              path={`/display/:id`}
-              render={(props) => (
-                <Player {...props} movie={movie} videoPath={videoPath}></Player>
-              )}
-            ></Route>
-            <Route
-              // need to be after /display because is dynamic and ambiguos
-              path={`/:path`}
-              render={(props) => {
-                return (
-                  <ListMovie
-                    {...props}
-                    serverStatus={serverStatus}
-                    baseFolder={baseFolder}
-                    onHandleVideoPath={handleVideoPath}
-                  ></ListMovie>
-                );
-              }}
-            ></Route>
-          </Switch>
-        </div>
+            path={`/settings`}
+            render={() => <div style={{flex: 1, display: "flex", justifyContent: "center", alignItems: "center", color: "white"}}>IN CONSTRUCTION</div>}
+          ></Route>
+          <Route
+            // need to be after /display because is dynamic and ambiguos
+            path={`/:path`}
+            render={(props) => {
+              return (
+                <ListMovie
+                  {...props}
+                  serverStatus={serverStatus}
+                  baseFolder={baseFolder}
+                  onHandleVideoPath={handleSelectedMovie}
+                ></ListMovie>
+              );
+            }}
+          ></Route>
+        </Switch>
         <Footer></Footer>
       </div>
     </BrowserRouter>

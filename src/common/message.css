@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  flex: 1;
 }
 .msg-box__label {
     font-size: 20px;

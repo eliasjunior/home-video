@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    flex: 1;
   }
   .loading--symbol {
     border: 16px solid #f3f3f3;

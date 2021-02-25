@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./movie.css";
-import { getVideos, getMovieImg } from "./Presenter";
+import { getVideos } from "./Presenter";
 import Loading from "../common/Loading";
-import MovieDetail from "./MovieDetail";
 import Message from "../common/Message";
+import Video from "./Video";
 
 function ListMovie(props) {
-  const { baseFolder, serverStatus } = props;
+  const { serverStatus } = props;
   const [movies, setMovies] = useState({});
   const [currentId, setCurrentId] = useState("");
-  
+  const { onHandleVideoPath } = props;
   useEffect(() => {
     async function fecthData() {
       try {
@@ -27,44 +27,40 @@ function ListMovie(props) {
   };
 
   const displayContent = () => {
+    console.log(movies.byId);
     if (currentId) {
-      const { onHandleVideoPath } = props;
       const movie = movies.byId[currentId];
       return (
-        <MovieDetail
-          movie={movie}
-          baseFolder={baseFolder}
-          onHandleVideoPath={onHandleVideoPath}
-        ></MovieDetail>
+        <Video
+            video={movie}
+            onSetVideo={setUpMovie}
+            onHandleSelectedMovie={onHandleVideoPath}
+            isDetail={true}
+          ></Video>
       );
     } else {
       return (
         <div className="media-content">
           {movies.allIds.map((id) => (
-            <div
-              className="media-content__box "
+            <Video
+              video={movies.byId[id]}
               key={id}
-              onClick={() => setUpMovie(id)}
-            >
-              <div className="media-content__box--img-box">
-                <img
-                  className="media-content__box--img"
-                  key={id}
-                  alt="Movie poster"
-                  src={getMovieImg(movies.byId[id])}
-                ></img>
-                <div className="media-content__box--text">{id}</div>
-              </div>
-            </div>
+              onSetVideo={setUpMovie}
+              onHandleSelectedMovie={onHandleVideoPath}
+            ></Video>
           ))}
         </div>
       );
     }
   };
-  if  (serverStatus === "offline" ) {
-    return <Message text="server is unreachable"></Message>
+  if (serverStatus === "offline") {
+    return <Message text="server is unreachable"></Message>;
   } else {
-    return !movies.allIds ? <Loading></Loading> : <div>{displayContent()}</div>;
+    return !movies.allIds || movies.allIds.length === 0 ? (
+      <Loading></Loading>
+    ) : (
+      <div className="player-detail">{displayContent()}</div>
+    );
   }
 }
 

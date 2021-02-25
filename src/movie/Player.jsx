@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import config from "../config";
 import "./player.css";
 import Message from "../common/Message";
@@ -49,3 +50,7 @@ function Player(props) {
 }
 
 export default Player;
+
+Player.propTypes = {
+  movie: PropTypes.object.isRequired,
+};

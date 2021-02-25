@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 export async function getVideosList({ api }) {
   const { get } = api;
   try {
