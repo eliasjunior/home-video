@@ -4,12 +4,7 @@ import { getMovieImg } from "./Presenter";
 import { Link } from "react-router-dom";
 import "./movie.css";
 
-export default function Video({
-  video,
-  onSetVideo,
-  onHandleSelectedMovie,
-  isDetail = false,
-}) {
+export default function Video({ video, onSetVideo, isDetail = false }) {
   const { id, name, sub } = video;
   const displayPlay = () => {
     if (!isDetail) {
@@ -19,12 +14,8 @@ export default function Video({
       <>
         <div className="media-content--name"> {sub} </div>
         <div className="detail__play">
-          <Link
-            className="link-base link-btn"
-            to={`/display/${id}`}
-            onClick={() => onHandleSelectedMovie(video)}
-          >
-            Play
+          <Link className="link-base link-btn" to={`/display/${id}`}>
+            Play {video.name}
           </Link>
         </div>
       </>
@@ -48,7 +39,6 @@ export default function Video({
 
 Video.propTypes = {
   video: PropTypes.object.isRequired,
-  onSetVideo: PropTypes.object.isRequired,
-  onHandleSelectedMovie: PropTypes.func.isRequired,
+  onSetVideo: PropTypes.func.isRequired,
   isDetail: PropTypes.bool,
 };

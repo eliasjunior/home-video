@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./movie.css";
 import { getVideos } from "./Presenter";
-import Loading from "../common/Loading";
-import Message from "../common/Message";
+import Loading from "../../components/Loading";
+import VdMessage from "../../components/VdMessage";
 import Video from "./Video";
 
 function ListMovie(props) {
   const { serverStatus } = props;
+  const [loadedFailed, setLoadedFailed] = useState(false);
   const [movies, setMovies] = useState({});
   const [currentId, setCurrentId] = useState("");
-  const { onHandleVideoPath } = props;
   useEffect(() => {
     async function fecthData() {
       try {
         const { movieMap } = await getVideos();
         setMovies(movieMap);
       } catch (err) {
-        console.error(err);
+        setLoadedFailed(!loadedFailed);
       }
     }
     fecthData();
@@ -27,16 +27,10 @@ function ListMovie(props) {
   };
 
   const displayContent = () => {
-    console.log(movies.byId);
     if (currentId) {
       const movie = movies.byId[currentId];
       return (
-        <Video
-            video={movie}
-            onSetVideo={setUpMovie}
-            onHandleSelectedMovie={onHandleVideoPath}
-            isDetail={true}
-          ></Video>
+        <Video video={movie} onSetVideo={setUpMovie} isDetail={true}></Video>
       );
     } else {
       return (
@@ -46,7 +40,6 @@ function ListMovie(props) {
               video={movies.byId[id]}
               key={id}
               onSetVideo={setUpMovie}
-              onHandleSelectedMovie={onHandleVideoPath}
             ></Video>
           ))}
         </div>
@@ -54,7 +47,7 @@ function ListMovie(props) {
     }
   };
   if (serverStatus === "offline") {
-    return <Message text="server is unreachable"></Message>;
+    return <VdMessage text="server is unreachable"></VdMessage>;
   } else {
     return !movies.allIds || movies.allIds.length === 0 ? (
       <Loading></Loading>

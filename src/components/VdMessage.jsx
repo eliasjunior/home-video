@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./message.css";
 
-export default function Message({
+export default function VdMessage({
   error = true,
   text = "Something went wrong",
 }) {
@@ -14,7 +14,7 @@ export default function Message({
   };
   return <div className="msg-box ">{content()}</div>;
 }
-Message.propTypes = {
+VdMessage.propTypes = {
   error: PropTypes.bool,
   text: PropTypes.string,
 };

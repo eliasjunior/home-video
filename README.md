@@ -39,6 +39,9 @@ The File structure should speak for it self,
 
 ### TODO
  Add readme instructuns to setup and archtecture
+ - Pic of design app, front, back rasberry
+ - pic of react app, components, show how the presenter works
+ - Also create a central project with links both apps, add these pics above there
 - search movie
 - footer btns
 

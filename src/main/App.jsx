@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import "../common/common.css";
-import ListMovie from "../movie/ListMovie";
-import Player from "../movie/Player";
-import Home from "../home/Home";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
+import "./App.css";
+import ListMovie from "../movie/components/ListMovie";
+import Player from "../movie/components/Player";
+import Home from "../home/Home";
 import { subscribeServerStatus } from "../common/Util";
 import Footer from "../footer/Footer";
 
 function App() {
   const [baseFolder, setBaseFolder] = useState("");
-  const [movie, setMovie] = useState({});
   const [serverStatus, setServerStatus] = useState("unknow");
 
-  const handleSelectedMovie = (movieParam) => {
-    setMovie(movieParam);
-  };
   const handleBaseFolder = (baseFolder) => {
     setBaseFolder(baseFolder);
   };
@@ -42,11 +37,23 @@ function App() {
           ></Route>
           <Route
             path={`/display/:id`}
-            render={(props) => <Player {...props} movie={movie}></Player>}
+            render={(props) => <Player {...props}></Player>}
           ></Route>
-            <Route
+          <Route
             path={`/settings`}
-            render={() => <div style={{flex: 1, display: "flex", justifyContent: "center", alignItems: "center", color: "white"}}>IN CONSTRUCTION</div>}
+            render={() => (
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "white",
+                }}
+              >
+                IN CONSTRUCTION
+              </div>
+            )}
           ></Route>
           <Route
             // need to be after /display because is dynamic and ambiguos
@@ -57,7 +64,6 @@ function App() {
                   {...props}
                   serverStatus={serverStatus}
                   baseFolder={baseFolder}
-                  onHandleVideoPath={handleSelectedMovie}
                 ></ListMovie>
               );
             }}

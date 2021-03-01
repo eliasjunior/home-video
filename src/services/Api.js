@@ -9,4 +9,13 @@ export async function get(resourse) {
     return err;
   }
 }
+export async function getById(resourse, id) {
+  try {
+    const res = await fetch(`${SERVER_URL}/${resourse}/${id}`);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+}
+
 
