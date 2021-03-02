@@ -1,0 +1,22 @@
+.media-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  font-size: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+  border-radius: 5px;
+  font-family: inherit;
+  background-color: white;
+  color: gray;
+  cursor: pointer;
+}
+
+.player-detail {
+  flex: 1;
+}

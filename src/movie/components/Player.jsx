@@ -9,30 +9,23 @@ const { SERVER_URL } = config();
 
 function Player({ match }) {
   const [loadedFailed, setLoadedFailed] = useState(false);
-  //const [movie, setMovie] = useState(undefined);
+  const [movie, setMovie] = useState(undefined);
   const { params } = match;
   const onErrorHandle = () => {
     setLoadedFailed(!loadedFailed);
   };
 
-  //TEMP **
-  const movie = {
-    name: "justamovie.mp4",
-    sub: "filme.vtt",
-    id: "filme-4",
-  };
-
-  // useEffect(() => {
-  //   const fetchMovie = async () => {
-  //     try {
-  //       const resp = await loadVideo(params.id);
-  //       setMovie(resp);
-  //     } catch (error) {
-  //       setLoadedFailed(!loadedFailed);
-  //     }
-  //   };
-  //   fetchMovie();
-  // }, []);
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const resp = await loadVideo(params.id);
+        setMovie(resp);
+      } catch (error) {
+        setLoadedFailed(!loadedFailed);
+      }
+    };
+    fetchMovie();
+  }, []);
 
   const renderVideo = () => {
     const subPath = SERVER_URL + "/captions/" + movie.id + "/" + movie.sub;
@@ -65,16 +58,15 @@ function Player({ match }) {
       </video>
     );
   };
-  return <div className="player">{renderVideo()}</div>;
-  // if (loadedFailed) {
-  //   return <VdMessage></VdMessage>;
-  // } else {
-  //   if (!movie) {
-  //     return <Loading></Loading>;
-  //   } else {
-  //     return <div className="player">{renderVideo()}</div>;
-  //   }
-  // }
+  if (loadedFailed) {
+    return <VdMessage></VdMessage>;
+  } else {
+    if (!movie) {
+      return <Loading></Loading>;
+    } else {
+      return <div className="player">{renderVideo()}</div>;
+    }
+  }
 }
 
 export default Player;

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { NODE_ENV } = process.env;
 
 export default function config() {
@@ -11,6 +12,7 @@ export default function config() {
     result.PORT = 8080;
     result.host = "localhost";
   }
-  result.SERVER_URL = `${result.PROTOCOL}://${result.host}:${result.PORT}`;
+  result.SERVER_URL = "http://192.168.0.234:8080";
+  // result.SERVER_URL = `${result.PROTOCOL}://${result.host}:${result.PORT}`;
   return result;
 }
