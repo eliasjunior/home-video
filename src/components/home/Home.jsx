@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./home.css";
-import VdMessage from "../components/VdMessage";
-import config from "../config";
+import VdMessage from "../VdMessage";
+import config from "../../config";
 const { SERVER_URL } = config();
 
 function Home({ onHandleBaseFolder }) {

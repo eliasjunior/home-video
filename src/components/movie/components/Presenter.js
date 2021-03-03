@@ -1,7 +1,7 @@
-import { requiredParameter } from "../../common/Util";
-import { get, getById } from "../../services/Api";
+import { requiredParameter } from "../../../common/Util";
+import { get, getById } from "../../../services/Api";
 import { getVideosList, getVideo } from "../VideosRepository";
-import config from "../../config";
+import config from "../../../config";
 const { SERVER_URL } = config();
 
 export async function getVideos() {

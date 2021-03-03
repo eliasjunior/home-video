@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
-import ListMovie from "../movie/components/ListMovie";
-import Player from "../movie/components/Player";
-import Home from "../home/Home";
+import ListMovie from "../components/movie/components/ListMovie";
+import Player from "../components/movie/components/Player";
+import Home from "../components/home/Home";
 import { subscribeServerStatus } from "../common/Util";
-import Footer from "../footer/Footer";
+import Footer from "../components/footer/Footer";
 
 function App() {
   const [baseFolder, setBaseFolder] = useState("");

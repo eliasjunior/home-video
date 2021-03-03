@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./listMovie.css";
 import { getVideos } from "./Presenter";
-import Loading from "../../components/Loading";
-import VdMessage from "../../components/VdMessage";
+import Loading from "../../Loading";
+import VdMessage from "../../VdMessage";
 import Video from "./Video";
 
 function ListMovie(props) {
