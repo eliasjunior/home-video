@@ -1,5 +1,13 @@
+#!/bin/bash
+
+cd /home/pi/Projects/home-video
+
 git pull
 
 npm run build
 
-npm start
+# server api
+
+cd /home/pi/Projects/home-video-api
+
+git pull

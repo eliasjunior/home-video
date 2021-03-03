@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import config from "../../../config";
 import "./player.css";
-import VdMessage from "../../VdMessage";
+import VdMessage from "../../common/VdMessage";
 import { loadVideo } from "./Presenter";
-import Loading from "../../Loading";
+import Loading from "../../common/Loading";
 const { SERVER_URL } = config();
 
 function Player({ match }) {

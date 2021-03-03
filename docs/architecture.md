@@ -1,4 +1,8 @@
-# Architectecture Desitions
+# Architecture Desitions and code approach
+
+## External Libraries
+
+I've avoided using css external libraries for practice purposes.
 
 ## Architectural decisions
 

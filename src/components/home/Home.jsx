@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./home.css";
-import VdMessage from "../VdMessage";
+import VdMessage from "../common/VdMessage";
 import config from "../../config";
 const { SERVER_URL } = config();
 
