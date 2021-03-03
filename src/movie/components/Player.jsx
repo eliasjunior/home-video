@@ -30,7 +30,6 @@ function Player({ match }) {
   const renderVideo = () => {
     const subPath = SERVER_URL + "/captions/" + movie.id + "/" + movie.sub;
     const videoPath = SERVER_URL + "/videos/" + movie.id + "/" + movie.name;
-    console.log("BUCETA", videoPath);
     return (
       <video
         className="video-guy"

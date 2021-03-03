@@ -1,10 +1,5 @@
-import { VALID_FORMATS } from "./constants";
 import config from "../config";
 const { SERVER_URL } = config();
-
-export function isVideoFile(movieName){
-    return VALID_FORMATS.get(movieName.slice(-3))
-}  
 
 export function requiredParameter(name, isThrow = true) {
   //TODO add log monitoring
