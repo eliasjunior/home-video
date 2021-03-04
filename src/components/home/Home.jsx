@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
 import "./home.css";
 import VdMessage from "../common/VdMessage";
 import config from "../../config";
 const { SERVER_URL } = config();
 
-function Home({ onHandleBaseFolder }) {
+function Home() {
   const history = useHistory();
   const [errorServer, setErrorServer] = useState(false);
   const goToPage = (path) => {
-    onHandleBaseFolder(path);
     history.push(path);
   };
   if (errorServer) {
@@ -27,7 +25,3 @@ function Home({ onHandleBaseFolder }) {
 }
 
 export default Home;
-
-Home.propTypes = {
-  onHandleBaseFolder: PropTypes.func,
-};

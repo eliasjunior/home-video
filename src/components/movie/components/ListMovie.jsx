@@ -10,7 +10,7 @@ function ListMovie(props) {
   const [loadedFailed, setLoadedFailed] = useState(false);
   const [movies, setMovies] = useState({});
   useEffect(() => {
-    async function fecthData() {
+    async function fetchData() {
       try {
         const { movieMap } = await getVideos();
         setMovies(movieMap);
@@ -18,7 +18,7 @@ function ListMovie(props) {
         setLoadedFailed(!loadedFailed);
       }
     }
-    fecthData();
+    fetchData();
   }, []);
 
   const setUpMovie = (movieId) => {

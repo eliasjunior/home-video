@@ -6,7 +6,7 @@
 
 ## How to use it
 
-Install the depencies
+Install the dependencies
 `npm install`
 
 ## Configuration
@@ -20,21 +20,7 @@ Install the depencies
 
 See `package.json` to available scripts
 
+[base docs](https://github.com/eliasjunior/home-video-docs)
 
 
-
-
-### TOD
-- configuration customation, has to be easy to start
-- TEsts ? hum
-    see integration tests https://code.visualstudio.com/api/working-with-extensions/testing-extension
-- search movie
-- Can I make home better
-- Do I need a better backup-img ? 
- Add readme instructuns to setup and archtecture
- - Pic of design app, front, back raspberry
- - pic of react app, components, show how the presenter works
- - Also create a central project with links both apps, add these pics above there
-
-- how to add a lib to npm -- see to add requiredParameter
 

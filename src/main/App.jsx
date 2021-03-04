@@ -6,14 +6,11 @@ import Player from "../components/movie/components/Player";
 import Home from "../components/home/Home";
 import { subscribeServerStatus } from "../common/Util";
 import Footer from "../components/footer/Footer";
+import { UN_KNOWN } from "../common/constants";
 
 function App() {
-  const [baseFolder, setBaseFolder] = useState("");
-  const [serverStatus, setServerStatus] = useState("unknow");
+  const [serverStatus, setServerStatus] = useState(UN_KNOWN);
 
-  const handleBaseFolder = (baseFolder) => {
-    setBaseFolder(baseFolder);
-  };
   const handleServerStatus = (value) => {
     setServerStatus(value);
   };
@@ -31,7 +28,7 @@ function App() {
             path={`/`}
             render={(props) => {
               return (
-                <Home {...props} onHandleBaseFolder={handleBaseFolder}></Home>
+                <Home {...props} ></Home>
               );
             }}
           ></Route>
@@ -56,15 +53,11 @@ function App() {
             )}
           ></Route>
           <Route
-            // need to be after /display because is dynamic and ambiguos
+            // need to be after /display because is dynamic and ambiguous
             path={`/:path`}
             render={(props) => {
               return (
-                <ListMovie
-                  {...props}
-                  serverStatus={serverStatus}
-                  baseFolder={baseFolder}
-                ></ListMovie>
+                <ListMovie {...props} serverStatus={serverStatus}></ListMovie>
               );
             }}
           ></Route>

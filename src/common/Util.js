@@ -1,5 +1,6 @@
 import config from "../config";
 const { SERVER_URL } = config();
+import { ON_LINE, OFF_LINE } from "./constants";
 
 export function requiredParameter(name, isThrow = true) {
   //TODO add log monitoring
@@ -13,11 +14,11 @@ export function requiredParameter(name, isThrow = true) {
 export function subscribeServerStatus(onHandleStatus) {
   const img = document.body.appendChild(document.createElement("img"));
   img.onload = function () {
-    onHandleStatus("online");
+    onHandleStatus(ON_LINE);
     img.remove();
   };
   img.onerror = function () {
-    onHandleStatus("offline");
+    onHandleStatus(OFF_LINE);
     img.remove();
   };
   img.src = `${SERVER_URL}/public/tiny.png`;
