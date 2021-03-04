@@ -1,4 +1,4 @@
-[![Node.js CI](https://github.com/eliasjunior/home-video/actions/workflows/run-test.yml/badge.svg)](https://github.com/eliasjunior/home-video/actions/workflows/run-test.yml)
+[![Tests](https://github.com/eliasjunior/home-video/actions/workflows/tests.yml/badge.svg)](https://github.com/eliasjunior/home-video/actions/workflows/tests.yml)
 
 # Home Video UI
 
