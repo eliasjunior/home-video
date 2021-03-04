@@ -2,7 +2,7 @@
 
 ## What is it ?
 
-- It's react basic app to play videos reading from a streaming API [`Home Video API`](https://github.com/eliasjunior/home-video-api) you also have to set up and install the back-end
+- It's react basic app to play videos reading from a streaming API [`Home Video API`](https://github.com/eliasjunior/home-video-api)
 
 ## How to use it
 
