@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/eliasjunior/home-video/actions/workflows/run-test.yml/badge.svg)](https://github.com/eliasjunior/home-video/actions/workflows/run-test.yml)
+
 # Home Video UI
 
 ## What is it ?
