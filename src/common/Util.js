@@ -1,6 +1,6 @@
 import config from "../config";
-const { SERVER_URL } = config();
 import { ON_LINE, OFF_LINE } from "./constants";
+const { SERVER_URL } = config();
 
 export function requiredParameter(name, isThrow = true) {
   //TODO add log monitoring
