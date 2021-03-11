@@ -4,6 +4,7 @@ module.exports = {
     node: true,
     es6: true,
     jest: true,
+    commonJS: true,
   },
   extends: ["eslint:recommended", "plugin:react/recommended"],
   globals: {
@@ -21,5 +22,6 @@ module.exports = {
   rules: {
     "react/prop-types": ["warn"],
     "no-unused-vars": ["warn"],
+    "import/first": ["warn"],
   },
 };
