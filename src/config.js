@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const {
   NODE_ENV,
   REACT_APP_SERVER_HOST,

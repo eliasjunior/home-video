@@ -9,15 +9,15 @@ function ListMovie(props) {
   const { serverStatus, history } = props;
   const [loadedFailed, setLoadedFailed] = useState(false);
   const [movies, setMovies] = useState({});
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const { movieMap } = await getVideos();
-        setMovies(movieMap);
-      } catch (err) {
-        setLoadedFailed(!loadedFailed);
-      }
+  async function fetchData() {
+    try {
+      const { movieMap } = await getVideos();
+      setMovies(movieMap);
+    } catch (err) {
+      setLoadedFailed(!loadedFailed);
     }
+  }
+  useEffect(() => {
     fetchData();
   }, []);
 

@@ -1,5 +1,7 @@
 
+- Test coverage, instal Istanbul
 - Test ? hum
+    Enzyme ?
     see integration tests https://code.visualstudio.com/api/working-with-extensions/testing-extension
 - search movie
 - Can I make home better
