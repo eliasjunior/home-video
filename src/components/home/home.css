@@ -1,20 +1,26 @@
 .home {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(63, 94, 251);
-    background: radial-gradient(
-    circle,
-    rgba(63, 94, 251, 1) 0%,
-    rgba(36, 15, 56, 1) 100%
-  );
+  display: flex;
+  background: rgb(63, 94, 251);
+  background: radial-gradient(
+  circle,
+  rgba(63, 94, 251, 1) 0%,
+  rgba(36, 15, 56, 1) 100%
+);
+  flex-direction: column;
+  min-height: inherit;
 }
 
-.home img {
+.img-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: inherit;
+}
+
+.img-box img {
     height: 120px;
     width: 140px;
     cursor: pointer;
+    border-radius: 5px;
 }    
 
-  

@@ -5,7 +5,7 @@ import ListMovie from "../components/movie/components/ListMovie";
 import Player from "../components/movie/components/Player";
 import Home from "../components/home/Home";
 import { subscribeServerStatus } from "../common/Util";
-import Footer from "../components/footer/Footer";
+
 import { UN_KNOWN } from "../common/constants";
 
 function App() {
@@ -27,9 +27,7 @@ function App() {
             exact
             path={`/`}
             render={(props) => {
-              return (
-                <Home {...props} ></Home>
-              );
+              return <Home {...props}></Home>;
             }}
           ></Route>
           <Route
@@ -62,7 +60,6 @@ function App() {
             }}
           ></Route>
         </Switch>
-        <Footer></Footer>
       </div>
     </BrowserRouter>
   );

@@ -16,10 +16,12 @@ function Home() {
   }
   return (
     <div className="home" onClick={() => goToPage("movies")}>
-      <img
-        src={`${SERVER_URL}/public/movies.png`}
-        onError={() => setErrorServer(!errorServer)}
-      ></img>
+      <div className="img-box">
+        <img
+          src={`${SERVER_URL}/public/movies.png`}
+          onError={() => setErrorServer(!errorServer)}
+        ></img>
+      </div>
     </div>
   );
 }

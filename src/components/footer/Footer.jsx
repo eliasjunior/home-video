@@ -6,13 +6,13 @@ function Footer() {
   return (
     <div className="footer">
       <Link to="/">
-        <i className="fas fa-home"></i>
+        <i className="fas fa-home icon-font"></i>
       </Link>
       <Link to="/movies">
-        <i className="fas fa-film"></i>
+        <i className="fas fa-film icon-font"></i>
       </Link>
       <Link to="/settings">
-        <i className="fas fa-user-cog"></i>
+        <i className="fas fa-user-cog icon-font"></i>
       </Link>
     </div>
   );

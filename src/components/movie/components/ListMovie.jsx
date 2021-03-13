@@ -4,6 +4,7 @@ import { getVideos } from "./Presenter";
 import Loading from "../../common/Loading";
 import VdMessage from "../../common/VdMessage";
 import Video from "./Video";
+import Footer from "components/footer/Footer";
 
 function ListMovie(props) {
   const { serverStatus, history } = props;
@@ -27,7 +28,7 @@ function ListMovie(props) {
 
   const displayContent = () => {
     return (
-      <div className="media-content">
+      <div className="list-content">
         {movies.allIds.map((id) => (
           <Video
             video={movies.byId[id]}
@@ -44,7 +45,10 @@ function ListMovie(props) {
     return !movies.allIds || movies.allIds.length === 0 ? (
       <Loading></Loading>
     ) : (
-      <div className="player-detail">{displayContent()}</div>
+      <div className="player-list">
+        {displayContent()}
+        <Footer></Footer>
+      </div>
     );
   }
 }

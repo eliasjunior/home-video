@@ -1,14 +1,25 @@
-.media-content {
+
+.player-list {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  min-height: inherit;
+}
+
+.list-content {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* background: rgb(63, 94, 251);
-  background: radial-gradient(
-    circle,
-    rgba(63, 94, 251, 1) 0%,
-    rgba(36, 15, 56, 1) 100%
-  ); */
+  flex: 1;
+}
+
+@media only screen and (min-width: 700px) {
+  .player-list {
+    display: flex;
+    flex-direction: row;
+  }
+  .list-content {
+    flex: auto;
+  } 
 }
 
 button {
@@ -21,8 +32,4 @@ button {
   background-color: white;
   color: gray;
   cursor: pointer;
-}
-
-.player-detail {
-  flex: 1;
 }
