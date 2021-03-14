@@ -7,7 +7,14 @@ function Header({ onChangeSearch }) {
 
   const displaySearch = () => {
     if (!isDisplaySearch) {
-      return <i className="fas fa-search"></i>;
+      return (
+        <i
+          className="fas fa-search"
+          onClick={() => {
+            setIsDisplaySearch(!isDisplaySearch);
+          }}
+        ></i>
+      );
     }
     return (
       <>
@@ -24,14 +31,7 @@ function Header({ onChangeSearch }) {
   return (
     <div className="header">
       <img src={`/favicon.png`}></img>
-      <div
-        className="header__search"
-        onClick={() => {
-          setIsDisplaySearch(!isDisplaySearch);
-        }}
-      >
-        {displaySearch()}
-      </div>
+      <div className="header__search">{displaySearch()}</div>
     </div>
   );
 }
