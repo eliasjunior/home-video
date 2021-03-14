@@ -8,7 +8,17 @@ export async function getVideos() {
   const api = {
     get,
   };
-  return getVideosList({ api });
+  try {
+    const { movieMap } = await getVideosList({ api });
+    const { allIds = [], byId = {} } = movieMap;
+    return {
+      allIds,
+      byId,
+    };
+  } catch (err) {
+    console.error("presenter could not map response", err);
+  }
+ 
 }
 
 export async function loadVideo(id = requiredParameter("video id")) {

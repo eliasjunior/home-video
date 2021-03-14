@@ -4,6 +4,4 @@ export const VALID_FORMATS = new Map([
   ["mkv", "mkv"],
 ]);
 
-export const UN_KNOWN = "unknown";
-export const ON_LINE = "online";
-export const OFF_LINE = "offline";
+export const IMG_CHECK_STATUS = "tiny.png";

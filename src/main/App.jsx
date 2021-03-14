@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
-import ListMovie from "../components/movie/components/ListMovie";
-import Player from "../components/movie/components/Player";
-import Home from "../components/home/Home";
-import { subscribeServerStatus } from "../common/Util";
-
-import { UN_KNOWN } from "../common/constants";
+import ListMovie from "components/movie/components/ListMovie";
+import Player from "components/movie/components/Player";
+import Home from "components/home/Home";
 
 function App() {
-  const [serverStatus, setServerStatus] = useState(UN_KNOWN);
-
-  const handleServerStatus = (value) => {
-    setServerStatus(value);
-  };
-
-  useEffect(() => {
-    subscribeServerStatus(handleServerStatus);
-  }, [serverStatus]);
-
   return (
     <BrowserRouter>
       <div className="app">
@@ -55,7 +42,7 @@ function App() {
             path={`/:path`}
             render={(props) => {
               return (
-                <ListMovie {...props} serverStatus={serverStatus}></ListMovie>
+                <ListMovie {...props}></ListMovie>
               );
             }}
           ></Route>

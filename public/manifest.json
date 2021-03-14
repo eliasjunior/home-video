@@ -1,9 +1,9 @@
 {
-  "short_name": "Cine Home",
+  "short_name": "Cine",
   "name": "Home video",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "favicon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }

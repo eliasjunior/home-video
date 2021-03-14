@@ -1,5 +1,5 @@
 import config from "../config";
-import { ON_LINE, OFF_LINE } from "./constants";
+import { IMG_CHECK_STATUS } from "./constants";
 const { SERVER_URL } = config();
 
 export function requiredParameter(name, isThrow = true) {
@@ -11,15 +11,18 @@ export function requiredParameter(name, isThrow = true) {
   }
 }
 
-export function subscribeServerStatus(onHandleStatus) {
+export function subscribeServerStatus({
+  onHandleStatus,
+  imgName = IMG_CHECK_STATUS,
+}) {
   const img = document.body.appendChild(document.createElement("img"));
   img.onload = function () {
-    onHandleStatus(ON_LINE);
+    onHandleStatus(true);
     img.remove();
   };
   img.onerror = function () {
-    onHandleStatus(OFF_LINE);
+    onHandleStatus(false);
     img.remove();
   };
-  img.src = `${SERVER_URL}/public/tiny.png`;
+  img.src = `${SERVER_URL}/public/${imgName}`;
 }

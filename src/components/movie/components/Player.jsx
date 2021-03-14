@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import config from "../../../config";
+import config from "config";
 import "./player.css";
-import VdMessage from "../../common/VdMessage";
+import VdMessage from "components/common/VdMessage";
 import { loadVideo } from "./Presenter";
-import Loading from "../../common/Loading";
+import Loading from "components/common/Loading";
 const { SERVER_URL } = config();
 
 function Player({ match }) {
