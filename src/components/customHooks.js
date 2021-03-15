@@ -3,7 +3,7 @@ import { subscribeServerStatus } from "common/Util";
 import { IMG_CHECK_STATUS } from "common/constants";
 
 export function useServerStatus(imgName = IMG_CHECK_STATUS) {
-  const [isOnline, setIsOnline] = useState(true);
+  const [isOnline, setIsOnline] = useState(false);
 
   const handleServerStatus = (value) => {
     setIsOnline(value);
