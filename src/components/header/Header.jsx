@@ -23,6 +23,7 @@ function Header({ onChangeSearch }) {
           type="text"
           onChange={onChangeSearch}
           placeholder="search movie"
+          autoFocus={true}
         ></input>
       </>
     );

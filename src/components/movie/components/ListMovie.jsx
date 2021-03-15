@@ -57,16 +57,17 @@ function ListMovie(props) {
     return allMovieIds.length === 0 ? (
       <Loading></Loading>
     ) : (
-      <div style={{ minHeight: "inherit"}}>
-        <Header onChangeSearch={(ev) => {
-          setSearchValue(ev.target.value)
-        }}></Header>
+      <div style={{ minHeight: "inherit" }}>
+        <Header
+          onChangeSearch={(ev) => {
+            setSearchValue(ev.target.value);
+          }}
+        ></Header>
         <div className="player-list">
           {displayContent()}
           <Footer></Footer>
         </div>
       </div>
-     
     );
   }
 }
