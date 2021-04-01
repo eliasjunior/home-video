@@ -3,8 +3,8 @@ import { IMG_CHECK_STATUS } from "./constants";
 const { SERVER_URL } = config();
 
 export function requiredParameter(name, isThrow = true) {
-  //TODO add log monitoring
   if (isThrow) {
+    console.warn("requiredParameter, the code should be wrap in a try catch");
     throw new Error(`${name} is required`);
   } else {
     console.error(`${name} is required *`);

@@ -1,9 +1,9 @@
 import { getVideosList, getVideo } from "./VideosRepository";
 describe("VideosService", () => {
   it("should return {} when response is corrupted", async () => {
-    const get = () => Promise.resolve(undefined);
+    const get = () => Promise.resolve({});
     const response = await getVideosList({ api: { get } });
-    expect(response).toEqual({});
+    expect(response).toEqual({ movieMap: {} });
   });
 
   it("should return correct when response is []", async () => {

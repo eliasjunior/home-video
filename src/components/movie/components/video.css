@@ -30,6 +30,38 @@
   margin: auto;
 }
 
+.hv-popup {
+  position: absolute;
+}
+.hv-popup--box {
+  /* display: none; */
+  opacity: 0;
+  transition: opacity 0.3s ease-out; 
+  /* left: 50%; */
+}
+
+.hv-popup:hover .hv-popup--box {
+  display: block;
+  opacity: 1; 
+  z-index: 2;
+}
+
+.hv-list {
+  padding: 3px;
+}
+.hv-list--item {
+  color: aliceblue;
+  border: 1px solid rgb(229, 229, 239);
+  border-radius: 5px;
+  padding: 2px;
+  margin-top: 3px;
+}
+
+.hv-list--item:hover  {
+  background-color: #551a8b;
+  height: 20px;
+}
+
 @media only screen and (min-width: 700px) {
   .media-content__box--img {
     height: 275px;

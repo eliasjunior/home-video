@@ -7,6 +7,7 @@
 - Can I make home better
 - Do I need a better backup-img ? 
 
+
 Architecture 
  - Pic of design app, front, back raspberry
  - pic of react app, components, show how the presenter works

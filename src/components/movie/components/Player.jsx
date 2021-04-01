@@ -5,12 +5,14 @@ import "./player.css";
 import VdMessage from "components/common/VdMessage";
 import { loadVideo } from "./Presenter";
 import Loading from "components/common/Loading";
+import { SERIES_CATEG } from "common/constants";
 const { SERVER_URL } = config();
 
 function Player({ match }) {
   const [loadedFailed, setLoadedFailed] = useState(false);
-  const [movie, setMovie] = useState(undefined);
+  const [media, setMedia] = useState(undefined);
   const { params } = match;
+  console.log("para", params);
   const onErrorHandle = () => {
     setLoadedFailed(!loadedFailed);
   };
@@ -18,8 +20,8 @@ function Player({ match }) {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const resp = await loadVideo(params.id);
-        setMovie(resp);
+        const resp = await loadVideo(params.id, params.type === SERIES_CATEG);
+        setMedia(resp);
       } catch (error) {
         setLoadedFailed(!loadedFailed);
       }
@@ -28,8 +30,14 @@ function Player({ match }) {
   }, []);
 
   const renderVideo = () => {
-    const subPath = SERVER_URL + "/captions/" + movie.id + "/" + movie.sub;
-    const videoPath = SERVER_URL + "/videos/" + movie.id + "/" + movie.name;
+    const subPath =
+      params.type === SERIES_CATEG
+        ? `${SERVER_URL}/captions/${media.parentId}/${media.id}/${media.sub}`
+        : `${SERVER_URL}/captions/${media.id}/${media.sub}`;
+    const videoPath =
+      params.type === SERIES_CATEG
+        ? `${SERVER_URL}/${params.type}/${media.parentId}/${media.id}/${media.name}`
+        : `${SERVER_URL}/${params.type}/${media.id}/${media.name}`;
     return (
       <video
         className="video-guy"
@@ -60,7 +68,7 @@ function Player({ match }) {
   if (loadedFailed) {
     return <VdMessage></VdMessage>;
   } else {
-    if (!movie) {
+    if (!media) {
       return <Loading></Loading>;
     } else {
       return <div className="player">{renderVideo()}</div>;

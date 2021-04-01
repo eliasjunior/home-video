@@ -22,5 +22,6 @@ module.exports = {
   rules: {
     "react/prop-types": ["warn"],
     "no-unused-vars": ["warn"],
+    "no-debugger": ["warn"],
   },
 };
