@@ -12,7 +12,6 @@ function Player({ match }) {
   const [loadedFailed, setLoadedFailed] = useState(false);
   const [media, setMedia] = useState(undefined);
   const { params } = match;
-  console.log("para", params);
   const onErrorHandle = () => {
     setLoadedFailed(!loadedFailed);
   };

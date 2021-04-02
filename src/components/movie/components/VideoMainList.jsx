@@ -35,7 +35,6 @@ function VideoMainList({ history }) {
   async function fetchSeries() {
     try {
       const { allIds, byId, error } = await getSeries();
-      console.log(">>Series", allIds);
       if (!error) {
         // order matters https://reactjs.org/docs/hooks-rules.html
         setSeriesMap(byId);
@@ -56,12 +55,10 @@ function VideoMainList({ history }) {
   }, [query]);
 
   const filterCategory = (value) => {
-    console.log("Filter by", value);
     setQuery(value);
   };
 
   const setUpMovie = (movieId, isSeries = false) => {
-    console.log("?? " + isSeries, movieId);
     history.push(
       `/display/${movieId}/${isSeries ? SERIES_CATEG : MOVIE_CATEG}`
     );

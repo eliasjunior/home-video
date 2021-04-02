@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./dialogList.css";
 
 export function DialogList({ list = [], onAction, parentId }) {
   return (
     <div className="hv-popup">
-      <div className="hv-popup--box">
+      <div className="hv-popup__box">
         <div className="hv-list">
           {list.map((ep) => (
             <div
