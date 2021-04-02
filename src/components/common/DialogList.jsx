@@ -25,4 +25,5 @@ export function DialogList({ list = [], onAction, parentId }) {
 DialogList.propTypes = {
   onAction: PropTypes.func.isRequired,
   parentId: PropTypes.string.isRequired,
+  list: PropTypes.array,
 };
