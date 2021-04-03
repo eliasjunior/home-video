@@ -3,13 +3,13 @@ describe("VideosService", () => {
   it("should return {} when response is corrupted", async () => {
     const get = () => Promise.resolve({});
     const response = await getVideosList({ api: { get } });
-    expect(response).toEqual({ movieMap: {} });
+    expect(response).toEqual({ mediaMap: {} });
   });
 
   it("should return correct when response is []", async () => {
     const get = () => Promise.resolve([]);
     const response = await getVideosList({ api: { get } });
-    expect(response).toEqual({ movieMap: [] });
+    expect(response).toEqual({ mediaMap: [] });
   });
 
   it("should get video by id ", async () => {
