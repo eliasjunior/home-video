@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./videoMainList.css";
-import { getVideos, getSeries } from "./Presenter";
+import { getPosters } from "./Presenter";
 import Loading from "../../common/Loading";
 import Footer from "components/footer/Footer";
 import Header from "components/header/Header";
 import VdMessage from "components/common/VdMessage";
-import VideoList from "./VideoList";
+import PosterList from "./PosterList";
 import { MOVIE_CATEG, SERIES_CATEG } from "common/constants";
 
 function VideoMainList({ history }) {
@@ -20,7 +20,7 @@ function VideoMainList({ history }) {
 
   async function fetchMovies() {
     try {
-      const { allIds, byId, error } = await getVideos();
+      const { allIds, byId, error } = await getPosters();
       if (!error) {
         // order matters https://reactjs.org/docs/hooks-rules.html
         setMovieMap(byId);
@@ -34,7 +34,7 @@ function VideoMainList({ history }) {
   }
   async function fetchSeries() {
     try {
-      const { allIds, byId, error } = await getSeries();
+      const { allIds, byId, error } = await getPosters(true);
       if (!error) {
         // order matters https://reactjs.org/docs/hooks-rules.html
         setSeriesMap(byId);
@@ -67,22 +67,22 @@ function VideoMainList({ history }) {
   const displayContent = () => {
     if (query === MOVIE_CATEG) {
       return (
-        <VideoList
+        <PosterList
           ids={allMovieIds}
           videoMap={movieMap}
           searchValue={searchValue}
           onSetVideo={setUpMovie}
-        ></VideoList>
+        ></PosterList>
       );
     } else {
       return (
-        <VideoList
+        <PosterList
           ids={allSeriesIds}
           videoMap={seriesMap}
           searchValue={searchValue}
           isSeries={true}
           onSetVideo={setUpMovie}
-        ></VideoList>
+        ></PosterList>
       );
     }
   };

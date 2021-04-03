@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Video from "./Video";
+import Poster from "./Poster";
 
-export default function VideoList({
+export default function PosterList({
   ids,
   videoMap,
   searchValue,
@@ -19,18 +19,18 @@ export default function VideoList({
             : movie.name.toUpperCase().includes(searchValue.toUpperCase());
         })
         .map((id) => (
-          <Video
+          <Poster
             video={videoMap[id]}
             key={id}
             onSetVideo={onSetVideo}
             isSeries={isSeries}
-          ></Video>
+          ></Poster>
         ))}
     </div>
   );
 }
 
-VideoList.propTypes = {
+PosterList.propTypes = {
   ids: PropTypes.array.isRequired,
   videoMap: PropTypes.object.isRequired,
   searchValue: PropTypes.string,

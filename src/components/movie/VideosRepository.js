@@ -1,28 +1,12 @@
-export async function getVideosList({ api }) {
+export async function getVideosList({ api, isSeries }) {
   const { get } = api;
   try {
-    const response = await get("videos");
+    const response = isSeries ? await get("series") : await get("videos");
     switch (response.status) {
       case 500:
-        return { movieMap: {error : response} };
+        return { mediaMap: { error: response } };
       default:
-        return { movieMap: response };
-    }
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
-}
-//TODO code just the same
-export async function getSeriesFolders({ api }) {
-  const { get } = api;
-  try {
-    const response = await get("series");
-    switch (response.status) {
-      case 500:
-        return { videoMap: {error : response} };
-      default:
-        return { videoMap: response };
+        return { mediaMap: response };
     }
   } catch (err) {
     console.error(err);

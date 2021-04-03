@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import config from "config";
 import "./player.css";
 import VdMessage from "components/common/VdMessage";
-import { loadVideo } from "./Presenter";
 import Loading from "components/common/Loading";
 import { SERIES_CATEG } from "common/constants";
-const { SERVER_URL } = config();
+import { getTrackSrc, getVideoSrc, loadVideo } from "./Player.presenter";
 
 function Player({ match }) {
   const [loadedFailed, setLoadedFailed] = useState(false);
@@ -29,14 +27,6 @@ function Player({ match }) {
   }, []);
 
   const renderVideo = () => {
-    const subPath =
-      params.type === SERIES_CATEG
-        ? `${SERVER_URL}/captions/${media.parentId}/${media.id}/${media.sub}`
-        : `${SERVER_URL}/captions/${media.id}/${media.sub}`;
-    const videoPath =
-      params.type === SERIES_CATEG
-        ? `${SERVER_URL}/${params.type}/${media.parentId}/${media.id}/${media.name}`
-        : `${SERVER_URL}/${params.type}/${media.id}/${media.name}`;
     return (
       <video
         className="video-guy"
@@ -47,16 +37,19 @@ function Player({ match }) {
         crossOrigin="anonymous"
         autoPlay={true}
       >
-        <source src={videoPath} type="video/mp4"></source>
+        <source
+          src={getVideoSrc({ mediaType: params.type, media })}
+          type="video/mp4"
+        ></source>
         <track
-          src={subPath}
+          src={getTrackSrc({ mediaType: params.type, media })}
           label="English"
           kind="subtitles"
           srcLang="en"
           default
         ></track>
         <track
-          src={subPath}
+          src={getTrackSrc({ mediaType: params.type, media })}
           label="Portuguese"
           kind="subtitles"
           srcLang="pt"
