@@ -9,7 +9,7 @@ export async function getVideosList({ api, isSeries }) {
         return { mediaMap: response };
     }
   } catch (err) {
-    console.error(err);
+    console.error("getVideosList", err);
     throw err;
   }
 }
@@ -22,7 +22,7 @@ export async function getVideo(obj) {
     const { name, id, sub, img, parentId } = response;
     return { name, id, sub, img, parentId };
   } catch (err) {
-    console.error(err);
+    console.error("getVideo", err);
     throw err;
   }
 }

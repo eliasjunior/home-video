@@ -29,14 +29,11 @@ export async function getPosters(isSeries = false) {
   }
 }
 
-// TODO review isSeries = false
 export function getMovieImg(
-  id = requiredParameter("video id"),
+  id = requiredParameter("video(img) id", false),
   isSeries = false
 ) {
   return isSeries
     ? `${SERVER_URL}/images/series/${id}`
     : `${SERVER_URL}/images/${id}`;
 }
-
-// private

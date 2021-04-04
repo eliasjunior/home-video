@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import VideoMainList from "components/movie/components/VideoMainList";
 import Player from "components/movie/components/Player";
 import Home from "components/home/Home";
 
-export default function Routers() {
+export default function Routers({ dispatch }) {
   return (
     <BrowserRouter>
       <Switch>
@@ -18,7 +19,7 @@ export default function Routers() {
         ></Route>
         <Route
           path={`/display/:id/:type`}
-          render={(props) => <Player {...props}></Player>}
+          render={(props) => <Player {...props} dispatch={dispatch}></Player>}
         ></Route>
         <Route
           path={`/settings`}
@@ -40,10 +41,18 @@ export default function Routers() {
           // need to be after /display because is dynamic and ambiguous
           path={`/:path`}
           render={(props) => {
-            return <VideoMainList {...props}></VideoMainList>;
+            return (
+              (
+              <VideoMainList {...props} dispatch={dispatch}></VideoMainList>
+            )
+            );
           }}
         ></Route>
       </Switch>
     </BrowserRouter>
   );
 }
+
+Routers.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};

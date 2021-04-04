@@ -5,18 +5,25 @@ import { getPosters } from "./Presenter";
 import Loading from "../../common/Loading";
 import Footer from "components/footer/Footer";
 import Header from "components/header/Header";
-import VdMessage from "components/common/VdMessage";
 import PosterList from "./PosterList";
 import { MOVIE_CATEG, SERIES_CATEG } from "common/constants";
+import { HAS_ERROR } from "main/Reducer";
 
-function VideoMainList({ history }) {
+function VideoMainList({ history, dispatch }) {
   const [movieMap, setMovieMap] = useState({});
   const [allMovieIds, setAllMovieIds] = useState([]);
   const [allSeriesIds, setAllSeriesIds] = useState([]);
   const [seriesMap, setSeriesMap] = useState({});
   const [searchValue, setSearchValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const [query, setQuery] = useState(MOVIE_CATEG);
+
+  useEffect(() => {
+    if (query === MOVIE_CATEG) {
+      fetchMovies();
+    } else {
+      fetchSeries();
+    }
+  }, [query]);
 
   async function fetchMovies() {
     try {
@@ -26,12 +33,13 @@ function VideoMainList({ history }) {
         setMovieMap(byId);
         setAllMovieIds(allIds);
       } else {
-        setErrorMessage(error);
+        dispatch({ type: HAS_ERROR, payload: error });
       }
     } catch (err) {
-      setErrorMessage("Error fetching the data");
+      dispatch({ type: HAS_ERROR, payload: "Error fetching the data" });
     }
   }
+
   async function fetchSeries() {
     try {
       const { allIds, byId, error } = await getPosters(true);
@@ -40,23 +48,12 @@ function VideoMainList({ history }) {
         setSeriesMap(byId);
         setAllSeriesIds(allIds);
       } else {
-        setErrorMessage(error);
+        dispatch({ type: HAS_ERROR, payload: error });
       }
     } catch (err) {
-      setErrorMessage("Error fetching the data");
+      dispatch({ type: HAS_ERROR, payload: "Error fetching the data" });
     }
   }
-  useEffect(() => {
-    if (query === MOVIE_CATEG) {
-      fetchMovies();
-    } else {
-      fetchSeries();
-    }
-  }, [query]);
-
-  const filterCategory = (value) => {
-    setQuery(value);
-  };
 
   const setUpMovie = (movieId, isSeries = false) => {
     history.push(
@@ -64,53 +61,43 @@ function VideoMainList({ history }) {
     );
   };
 
-  const displayContent = () => {
-    if (query === MOVIE_CATEG) {
-      return (
-        <PosterList
-          ids={allMovieIds}
-          videoMap={movieMap}
-          searchValue={searchValue}
-          onSetVideo={setUpMovie}
-        ></PosterList>
-      );
-    } else {
-      return (
-        <PosterList
-          ids={allSeriesIds}
-          videoMap={seriesMap}
-          searchValue={searchValue}
-          isSeries={true}
-          onSetVideo={setUpMovie}
-        ></PosterList>
-      );
-    }
-  };
-  if (errorMessage !== "") {
-    return <VdMessage text={errorMessage}></VdMessage>;
-  } else {
-    return allMovieIds.length === 0 ? (
-      <Loading></Loading>
-    ) : (
-      <div style={{ minHeight: "inherit" }}>
-        <Header
-          onChangeSearch={(ev) => {
-            setSearchValue(ev.target.value);
-          }}
-          onFilterCat={filterCategory}
-          history={history}
-        ></Header>
-        <div className="player-list">
-          {displayContent()}
-          <Footer></Footer>
-        </div>
+  return allMovieIds.length === 0 ? (
+    <Loading></Loading>
+  ) : (
+    <div style={{ minHeight: "inherit" }}>
+      <Header
+        onChangeSearch={(ev) => {
+          setSearchValue(ev.target.value);
+        }}
+        onFilterCat={(value) => setQuery(value)}
+        history={history}
+      ></Header>
+      <div className="player-list">
+        {query === MOVIE_CATEG ? (
+          <PosterList
+            ids={allMovieIds}
+            videoMap={movieMap}
+            searchValue={searchValue}
+            onSetVideo={setUpMovie}
+          ></PosterList>
+        ) : (
+          <PosterList
+            ids={allSeriesIds}
+            videoMap={seriesMap}
+            searchValue={searchValue}
+            isSeries={true}
+            onSetVideo={setUpMovie}
+          ></PosterList>
+        )}
+        <Footer></Footer>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default VideoMainList;
 
 VideoMainList.propTypes = {
   history: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
