@@ -38,13 +38,11 @@ export default function Routers({ dispatch }) {
           )}
         ></Route>
         <Route
-          // need to be after /display because is dynamic and ambiguous
+          // need to be after /display because is dynamic
           path={`/:path`}
           render={(props) => {
             return (
-              (
               <VideoMainList {...props} dispatch={dispatch}></VideoMainList>
-            )
             );
           }}
         ></Route>
