@@ -1,16 +1,6 @@
 
 - Test coverage, instal Istanbul
-- Test ? hum
-    Enzyme ?
-    see integration tests https://code.visualstudio.com/api/working-with-extensions/testing-extension
-- search movie
+- Add more testsTest 
 - Can I make home better
 - Do I need a better backup-img ? 
-
-
-Architecture 
- - Pic of design app, front, back raspberry
- - pic of react app, components, show how the presenter works
- - Also create a central project with links both apps, add these pics above there
-
-- how to add a lib to npm -- see to add requiredParameter
+- add a lib to npm -- see to add requiredParameter
