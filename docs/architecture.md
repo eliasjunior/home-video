@@ -2,7 +2,7 @@
 
 ## External Libraries
 
-I've avoided using css external libraries for learning reason.
+I've avoided using css external libraries for learning reasons.
 
 ## Architectural decisions
 
