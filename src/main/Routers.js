@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
-import VideoMainList from "components/movie/components/VideoMainList";
-import Player from "components/movie/components/Player";
+import VideoMainList from "components/video/components/VideoMainList";
+import Player from "components/video/components/Player";
 import Home from "components/home/Home";
 
 export default function Routers({ dispatch }) {
