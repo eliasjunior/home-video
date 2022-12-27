@@ -1,12 +1,13 @@
 import Poster from "./Poster";
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
-// import react-testing methods
-import { render, screen } from "@testing-library/react";
+import { createRoot } from "react-dom/client";
+import { screen, render } from "@testing-library/react";
 
 describe("Poster", () => {
   test("loads movie poster", () => {
-    // Arrange
+    const root = createRoot(document.createElement("div"));
+
     render(
       <Poster
         video={{ name: "", id: "fantasy" }}
