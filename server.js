@@ -1,3 +1,4 @@
+//OBS: It's not using anymore, now it use nginx to serve the app see nginx.conf
 const express = require("express");
 const path = require("path");
 const app = express();
