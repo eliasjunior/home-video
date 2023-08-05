@@ -7,7 +7,8 @@ const {
 
 export default function config() {
   const result = {};
-  console.log("MY_VAR React", REACT_APP_MY_VAR);
+  console.log(`React end-point => ${REACT_APP_SERVER_HOST}`);
+  console.log(`Env => ${NODE_ENV }`);
   if (NODE_ENV === "production") {
     result.PROTOCOL = REACT_APP_SERVER_PROTOCOL;
     result.PORT = process.env.PORT || 8080;
