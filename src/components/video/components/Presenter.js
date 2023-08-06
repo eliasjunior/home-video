@@ -31,8 +31,13 @@ export async function getPosters(isSeries = false) {
 
 export function getMovieImg(
   id = requiredParameter("video(img) id", false),
-  isSeries = false
+  isSeries = false,
+  imgUrl
 ) {
+  if (imgUrl && imgUrl.indexOf("http") != -1) {
+    return imgUrl;
+  }
+
   return isSeries
     ? `${SERVER_URL}/images/series/${id}`
     : `${SERVER_URL}/images/${id}`;

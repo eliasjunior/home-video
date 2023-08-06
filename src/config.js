@@ -16,7 +16,7 @@ export default function config() {
   } else {
     result.PROTOCOL = "http";
     result.PORT = 8080;
-    result.host = "localhost";
+    result.host = REACT_APP_SERVER_HOST; // testing purposes, pointing to prod
   }
   result.SERVER_URL = `${result.PROTOCOL}://${result.host}:${result.PORT}`;
   return result;
