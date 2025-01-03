@@ -1,9 +1,5 @@
-const {
-  NODE_ENV,
-  REACT_APP_SERVER_HOST,
-  REACT_APP_SERVER_PROTOCOL,
-  REACT_APP_MY_VAR,
-} = process.env;
+const { NODE_ENV, REACT_APP_SERVER_HOST, REACT_APP_SERVER_PROTOCOL } =
+  process.env;
 
 export default function config() {
   const result = {};
