@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "production=true node server.js",
-    "dev": "node get-ip.js && react-scripts start",
+    "dev": "react-scripts start",
     "server": "nodemon --exec 'node server/server.js'",
     "build": "node get-ip.js && react-scripts build",
     "test": "react-scripts test",

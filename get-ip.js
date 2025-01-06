@@ -15,5 +15,18 @@ function getLocalIPAddress() {
 }
 
 const ipAddress = getLocalIPAddress();
-fs.writeFileSync(".env", `REACT_APP_SERVER_HOST=${ipAddress}\n`, { flag: "a" });
-console.log(`Local IP address written to .env: ${ipAddress}`);
+const envFilePath = ".env";
+let envFileContent = fs.readFileSync(envFilePath, "utf8");
+
+const newEnvFileContent = envFileContent.replace(
+  /^REACT_APP_SERVER_HOST=.*$/m,
+  `REACT_APP_SERVER_HOST=${ipAddress}`
+);
+
+if (!/^REACT_APP_SERVER_HOST=.*$/m.test(envFileContent)) {
+  fs.appendFileSync(envFilePath, `\nREACT_APP_SERVER_HOST=${ipAddress}`);
+} else {
+  fs.writeFileSync(envFilePath, newEnvFileContent);
+}
+
+console.log(`Local IP address set in .env: ${ipAddress}`);
