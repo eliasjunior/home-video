@@ -1,9 +1,13 @@
-const { NODE_ENV, REACT_APP_SERVER_PROTOCOL } = process.env;
+const { NODE_ENV, REACT_APP_SERVER_PROTOCOL, REACT_APP_SERVER_HOST } =
+  process.env;
 
 export default function config() {
   const result = {};
-  const host = getLocalIPAddress();
-  console.log(`React end-point => ${getLocalIPAddress()}`);
+
+  const host = REACT_APP_SERVER_HOST || "localhost";
+  console.log(`Local IP address written to .env: ${host}`);
+
+  console.log(`React server host => ${host}`);
   console.log(`Env => ${NODE_ENV}`);
   if (NODE_ENV === "production") {
     result.PROTOCOL = REACT_APP_SERVER_PROTOCOL;
@@ -16,20 +20,4 @@ export default function config() {
   }
   result.SERVER_URL = `${result.PROTOCOL}://${result.host}:${result.PORT}`;
   return result;
-}
-
-function getLocalIPAddress() {
-  const os = require("os");
-
-  const networkInterfaces = os.networkInterfaces();
-  for (const interfaceName in networkInterfaces) {
-    for (const iface of networkInterfaces[interfaceName]) {
-      // Look for the IPv4, non-internal address
-      if (iface.family === "IPv4" && !iface.internal) {
-        console.log("Local Host IP:", iface.address);
-        return iface.address;
-      }
-    }
-  }
-  return "127.0.0.1"; // Fallback to localhost
 }
